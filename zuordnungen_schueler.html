@@ -1612,11 +1612,13 @@ function zeigeFrage() {
     antworten.innerHTML = '';
     // Optionen mischen
     const gemischteIndizes = aufgabe.optionen.map((_, i) => i).sort(() => Math.random() - 0.5);
-    gemischteIndizes.forEach(i => {
+    const richtigDomPos = gemischteIndizes.indexOf(aufgabe.richtig);
+    gemischteIndizes.forEach((origIdx, domPos) => {
       const btn = document.createElement('button');
       btn.className = 'antwort-btn';
-      btn.innerHTML = aufgabe.optionen[i];
-      btn.onclick = () => antwortenClick(i, aufgabe);
+      btn.innerHTML = aufgabe.optionen[origIdx];
+      btn.dataset.origIdx = origIdx;
+      btn.onclick = () => antwortenClick(domPos, aufgabe, richtigDomPos);
       antworten.appendChild(btn);
     });
     document.getElementById('feedback').className = 'feedback';
@@ -1692,7 +1694,8 @@ function zeigeFrage() {
   document.getElementById('weiter-btn').className = 'weiter-btn';
 }
 
-function antwortenClick(index, aufgabe) {
+function antwortenClick(index, aufgabe, richtigDomPos) {
+  const richtigPos = (richtigDomPos !== undefined) ? richtigDomPos : aufgabe.richtig;
   if (geantwortet) return;
   geantwortet = true;
 
@@ -1702,14 +1705,14 @@ function antwortenClick(index, aufgabe) {
   const feedback = document.getElementById('feedback');
   const weiter = document.getElementById('weiter-btn');
 
-  if (index === aufgabe.richtig) {
+  if (index === richtigPos) {
     richtigCount++;
     buttons[index].classList.add('richtig');
     feedback.textContent = '✓ Richtig! ' + aufgabe.erklaerung;
     feedback.className = 'feedback show ok';
   } else {
     buttons[index].classList.add('falsch');
-    buttons[aufgabe.richtig].classList.add('richtig');
+    buttons[richtigPos].classList.add('richtig');
     feedback.textContent = '✗ Leider falsch. ' + aufgabe.erklaerung;
     feedback.className = 'feedback show nok';
   }
