@@ -1,7 +1,7 @@
 var aufgabenPool_1_6 = [
   {
     format: 'mc',
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 170" width="210" height="170" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 170" width="230" height="170" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
   <line x1="30" y1="145" x2="195" y2="145" stroke="#333" stroke-width="1.5"/>
   <line x1="30" y1="145" x2="30" y2="15" stroke="#333" stroke-width="1.5"/>
   <polygon points="195,140 202,145 195,150" fill="#333"/>
@@ -14,7 +14,7 @@ var aufgabenPool_1_6 = [
     optionen: [
       'Im Supermarkt kostet jedes Brötchen gleich viel.',
       'Der Preis eines Handys sinkt, je mehr Geräte verkauft werden.',
-      'Ein Bäcker backt mehr Brötchen, wenn die Nachfrage steigt.',
+      'Ein Schwimmbad kostet 3 Euro Eintritt, jede weitere Stunde kostet 2 Euro extra.',
       'Beim Flohmarkt schwanken die Preise je nach Angebot.',
       'Ein Händler kauft erst ab einer Mindestbestellmenge von 10 Stück ein.'
     ],
@@ -23,7 +23,7 @@ var aufgabenPool_1_6 = [
   },
   {
     format: 'mc',
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 170" width="210" height="170" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 170" width="230" height="170" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
   <line x1="30" y1="145" x2="195" y2="145" stroke="#333" stroke-width="1.5"/>
   <line x1="30" y1="145" x2="30" y2="15" stroke="#333" stroke-width="1.5"/>
   <polygon points="195,140 202,145 195,150" fill="#333"/>
@@ -45,7 +45,7 @@ var aufgabenPool_1_6 = [
   },
   {
     format: 'mc',
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 170" width="210" height="170" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 170" width="230" height="170" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
   <line x1="30" y1="145" x2="195" y2="145" stroke="#333" stroke-width="1.5"/>
   <line x1="30" y1="145" x2="30" y2="15" stroke="#333" stroke-width="1.5"/>
   <polygon points="195,140 202,145 195,150" fill="#333"/>
@@ -57,18 +57,18 @@ var aufgabenPool_1_6 = [
 </svg>`,
     frage: 'Welche Situation passt zu diesem Diagramm?',
     optionen: [
-      'Ein Paket wiegt immer 200 g Verpackung plus das Gewicht der Bücher darin.',
+      'Auf einem Erdbeerfeld kostet das Körbchen 1 Euro und jedes Kilo Erdbeeren 5,60 Euro.',
       'Äpfel werden gewogen: Je mehr Äpfel, desto schwerer.',
-      'Ein leerer Rucksack wiegt nichts, Bücher kommen dazu.',
+      'Je mehr Bücher man kauft, desto mehr zahlt man.',
       'Eine Waage zeigt das Gewicht von Mehlportionen.',
       'Beim Abnehmen verliert man pro Woche unterschiedlich viel.'
     ],
     richtig: 0,
-    erklaerung: 'Der Graph steigt gleichmäßig, beginnt aber nicht im Ursprung – das passt zu einer Situation mit einem festen Grundgewicht (Verpackung), zu dem gleichmäßig mehr dazukommt.'
+    erklaerung: 'Der Graph steigt gleichmäßig, beginnt aber nicht im Ursprung – das passt zu einer Situation mit einer Grundgebühr, zu der gleichmäßig mehr dazukommt.'
   },
   {
     format: 'mc',
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 170" width="210" height="170" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 170" width="230" height="170" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
   <line x1="30" y1="145" x2="195" y2="145" stroke="#333" stroke-width="1.5"/>
   <line x1="30" y1="145" x2="30" y2="15" stroke="#333" stroke-width="1.5"/>
   <polygon points="195,140 202,145 195,150" fill="#333"/>
@@ -90,7 +90,7 @@ var aufgabenPool_1_6 = [
   },
   {
     format: 'mc',
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 170" width="210" height="170" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 170" width="230" height="170" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
   <line x1="30" y1="145" x2="195" y2="145" stroke="#333" stroke-width="1.5"/>
   <line x1="30" y1="145" x2="30" y2="15" stroke="#333" stroke-width="1.5"/>
   <polygon points="195,140 202,145 195,150" fill="#333"/>
