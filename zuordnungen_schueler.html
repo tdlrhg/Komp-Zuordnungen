@@ -1337,7 +1337,10 @@ async function testStarten(kompetenzId) {
         script.onerror = reject;
         document.head.appendChild(script);
       });
-      const varName = `aufgabenPool_${kompetenzId.replace('.','_')}`;
+      const varName = 'aufgabenPool_' + kompetenzId;
+      if (!window[varName] || window[varName].length === 0) {
+        console.error('Pool nicht gefunden:', varName, window[varName]);
+      }
       aufgabenPool[kompetenzId] = window[varName] || [];
     } catch(e) {
       alert('Aufgaben konnten nicht geladen werden.');
