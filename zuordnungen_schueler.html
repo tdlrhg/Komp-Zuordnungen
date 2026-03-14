@@ -370,7 +370,7 @@
 <body>
 
 <header>
-  <h1>🗺️ Lernlandkarte Zuordnungen</h1>
+  <h1 id="haupttitel" onclick="devModeKlick()">🗺️ Lernlandkarte Zuordnungen</h1>
   <p>Mathe Klasse 7</p>
   <div id="name-anzeige" class="versteckt">
     <span class="name-badge" onclick="nameAendern()" title="Name ändern">👤 <span id="name-text"></span> ✏️</span>
@@ -447,6 +447,7 @@ const kompetenzen = [
 
 // Immer 3 offen; für jede grün bestandene Kompetenz rutscht eine weitere nach.
 function freigeschalteteAnzahl() {
+  if (devMode) return kompetenzen.length;
   const gruenCount = kompetenzen.filter(k => lernstand[k.id] === 'gruen').length;
   return Math.min(3 + gruenCount, kompetenzen.length);
 }
@@ -1198,6 +1199,7 @@ let geantwortet = false;
 
 // Immer 3 offen; für jede grün bestandene ODER ≥3x erfolglos versuchte Kompetenz rutscht eine nach.
 function freigeschalteteAnzahl() {
+  if (devMode) return kompetenzen.length;
   const fortschritt = kompetenzen.filter(k =>
     lernstand[k.id] === 'gruen' || (versuche[k.id] || 0) >= 3
   ).length;
@@ -1248,6 +1250,26 @@ function zeigeHauptansicht() {
 }
 
 // ========== LERNLANDKARTE ==========
+
+// ========== DEV MODE ==========
+let devKlicks = 0;
+let devKlickTimer = null;
+let devMode = false;
+
+function devModeKlick() {
+  devKlicks++;
+  clearTimeout(devKlickTimer);
+  devKlickTimer = setTimeout(() => { devKlicks = 0; }, 600);
+  if (devKlicks >= 3) {
+    devKlicks = 0;
+    devMode = !devMode;
+    const titel = document.getElementById('haupttitel');
+    titel.style.opacity = devMode ? '0.5' : '1';
+    titel.title = devMode ? 'Dev-Modus aktiv' : '';
+    baueLandkarte();
+  }
+}
+
 function baueLandkarte() {
   const liste = document.getElementById('kompetenz-liste');
   liste.innerHTML = '';
