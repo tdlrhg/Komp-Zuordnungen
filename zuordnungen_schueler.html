@@ -1,0 +1,1923 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mathe 7 – Zuordnungen</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap');
+
+  :root {
+    --bg: #f0f4ff;
+    --card: #ffffff;
+    --primary: #3b5bdb;
+    --primary-light: #748ffc;
+    --green: #2f9e44;
+    --green-light: #d3f9d8;
+    --yellow: #e67700;
+    --yellow-light: #fff3bf;
+    --red: #c92a2a;
+    --red-light: #ffe3e3;
+    --text: #1a1a2e;
+    --muted: #6c757d;
+    --border: #dee2e6;
+    --shadow: 0 4px 24px rgba(59,91,219,0.10);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 24px 16px 48px;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  header h1 {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--primary);
+    letter-spacing: -1px;
+  }
+
+  header p {
+    color: var(--muted);
+    font-size: 1rem;
+    margin-top: 4px;
+  }
+
+  .name-badge {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    font-weight: 800;
+    font-size: 0.85rem;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-top: 8px;
+    cursor: pointer;
+  }
+
+  /* LOGIN */
+  .login-card {
+    max-width: 480px;
+    margin: 0 auto 32px;
+    background: var(--card);
+    border-radius: 20px;
+    padding: 36px 28px;
+    box-shadow: var(--shadow);
+    text-align: center;
+  }
+
+  .login-card h2 {
+    font-size: 1.3rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+    color: var(--primary);
+  }
+
+  .login-card p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+
+  .name-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .name-input:focus { border-color: var(--primary); }
+
+  /* LERNLANDKARTE */
+  .landkarte {
+    max-width: 700px;
+    margin: 0 auto 40px;
+    background: var(--card);
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: var(--shadow);
+  }
+
+  .landkarte h2 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin-bottom: 18px;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .kompetenz-liste {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .kompetenz-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 2px solid var(--border);
+    background: #fafbff;
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  .kompetenz-item.gruen { border-color: var(--green); background: var(--green-light); }
+  .kompetenz-item.gelb { border-color: var(--yellow); background: var(--yellow-light); }
+  .kompetenz-item.gesperrt { opacity: 0.4; }
+
+  .aufkleber {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px dashed var(--border);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.4s;
+  }
+
+  .kompetenz-item.gruen .aufkleber { border: 2px solid var(--green); background: var(--green); animation: pop 0.4s ease; }
+  .kompetenz-item.gelb .aufkleber { border: 2px solid var(--yellow); background: var(--yellow-light); }
+
+  @keyframes pop {
+    0% { transform: scale(0.5); opacity: 0; }
+    70% { transform: scale(1.2); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .kompetenz-text { font-size: 0.92rem; font-weight: 600; line-height: 1.4; color: var(--text); }
+  .kompetenz-nr { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--muted); flex-shrink: 0; width: 20px; }
+
+  .test-starten-btn {
+    margin-left: auto;
+    padding: 6px 14px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 800;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* TEST */
+  .test-container { max-width: 700px; margin: 0 auto; }
+
+  .test-card {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+  }
+
+  .test-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .test-title { font-size: 1rem; font-weight: 800; color: var(--primary); }
+
+  .fortschritt {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+    background: var(--bg);
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  .frage-text { font-size: 1rem; font-weight: 700; margin-bottom: 16px; line-height: 1.5; }
+
+  .wertetabelle-wrapper { overflow-x: auto; margin-bottom: 20px; }
+
+  table { border-collapse: collapse; width: 100%; font-family: 'Space Mono', monospace; font-size: 0.85rem; }
+  table th, table td { border: 2px solid var(--border); padding: 10px 14px; text-align: center; }
+  table th { background: var(--primary); color: white; font-weight: 700; }
+  table td { background: #fafbff; }
+  table.hochformat { max-width: 280px; }
+  table.hochformat th { text-align: left; padding-left: 14px; }
+  table.hochformat td { text-align: left; }
+
+  .antworten { display: flex; flex-direction: column; gap: 10px; }
+
+  .antwort-btn {
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 2px solid var(--border);
+    background: #fafbff;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 0.2s, background 0.2s, transform 0.1s;
+  }
+
+  .antwort-btn:hover:not(:disabled) { border-color: var(--primary-light); background: #eef2ff; transform: translateX(4px); }
+  .antwort-btn.richtig { border-color: var(--green); background: var(--green-light); color: var(--green); }
+  .antwort-btn.falsch { border-color: var(--red); background: var(--red-light); color: var(--red); }
+  .antwort-btn:disabled { cursor: default; }
+
+  .feedback { display: none; margin-top: 16px; padding: 14px 16px; border-radius: 12px; font-weight: 700; font-size: 0.95rem; line-height: 1.5; }
+  .feedback.show { display: block; }
+  .feedback.ok { background: var(--green-light); color: var(--green); }
+  .feedback.nok { background: var(--red-light); color: var(--red); }
+
+  .weiter-btn {
+    display: none;
+    margin-top: 16px;
+    width: 100%;
+    padding: 14px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .weiter-btn:hover { background: #2f4bbf; }
+  .weiter-btn.show { display: block; }
+
+  /* ERGEBNIS */
+  .ergebnis-card {
+    display: none;
+    background: var(--card);
+    border-radius: 20px;
+    padding: 36px 28px;
+    box-shadow: var(--shadow);
+    text-align: center;
+  }
+
+  .ergebnis-card.show { display: block; }
+  .ergebnis-emoji { font-size: 3.5rem; margin-bottom: 12px; animation: pop 0.5s ease; }
+  .ergebnis-titel { font-size: 1.5rem; font-weight: 900; margin-bottom: 8px; }
+  .ergebnis-text { color: var(--muted); font-size: 1rem; margin-bottom: 24px; line-height: 1.6; }
+  .ergebnis-score { font-family: 'Space Mono', monospace; font-size: 2.5rem; font-weight: 700; margin-bottom: 8px; }
+  .ergebnis-score.gruen { color: var(--green); }
+  .ergebnis-score.gelb { color: var(--yellow); }
+  .ergebnis-score.rot { color: var(--red); }
+
+  .btn-reihe { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 8px; }
+
+  .nochmal-btn {
+    padding: 14px 24px;
+    background: var(--bg);
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .nochmal-btn:hover { background: var(--primary); color: white; }
+
+  .download-btn {
+    padding: 14px 24px;
+    background: var(--green);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .download-btn:hover { background: #237032; }
+  .download-btn.versteckt { display: none; }
+
+  .download-hinweis {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 12px;
+    line-height: 1.5;
+  }
+
+  .versteckt { display: none; }
+
+  /* Haupt-Buttons */
+  .haupt-btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    box-shadow: 0 4px 16px rgba(59,91,219,0.25);
+  }
+
+  .haupt-btn:hover { background: #2f4bbf; transform: translateY(-1px); }
+
+  /* ABGABE-HINWEIS */
+  .abgabe-card {
+    max-width: 700px;
+    margin: 0 auto 24px;
+    background: #fff8e1;
+    border: 2px solid var(--yellow);
+    border-radius: 16px;
+    padding: 18px 20px;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #5c4000;
+    display: none;
+  }
+
+  .abgabe-card.show { display: block; }
+  .abgabe-card strong { color: var(--yellow); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🗺️ Lernlandkarte Zuordnungen</h1>
+  <p>Mathe Klasse 7</p>
+  <div id="name-anzeige" class="versteckt">
+    <span class="name-badge" onclick="nameAendern()" title="Name ändern">👤 <span id="name-text"></span> ✏️</span>
+  </div>
+</header>
+
+<!-- LOGIN -->
+<div class="login-card" id="login-card">
+  <h2>👋 Hallo!</h2>
+  <p>Gib deinen Vor- und Nachnamen ein, damit dein Lernstand gespeichert werden kann.</p>
+  <input type="text" class="name-input" id="name-input" placeholder="Vorname Nachname" maxlength="60"
+    onkeydown="if(event.key==='Enter') loginBestaetigen()">
+  <button class="haupt-btn" onclick="loginBestaetigen()">Los geht's →</button>
+</div>
+
+<!-- LERNLANDKARTE -->
+<div class="landkarte versteckt" id="landkarte">
+  <h2>📍 Mein Lernstand</h2>
+  <div class="kompetenz-liste" id="kompetenz-liste">
+    <!-- wird dynamisch befüllt -->
+  </div>
+</div>
+
+<!-- ABGABE-HINWEIS -->
+<div class="abgabe-card" id="abgabe-hinweis">
+  <strong>📎 Vergiss nicht:</strong> Nach einem bestandenen Test kannst du auf der Ergebnisseite eine Datei herunterladen und bei IServ hochladen – damit weiß deine Lehrerin, was du schon kannst.
+</div>
+
+<!-- TEST -->
+<div class="test-container versteckt" id="test-container">
+  <div class="test-card" id="test-card">
+    <div class="test-header">
+      <span class="test-title" id="test-titel">Kompetenz 1</span>
+      <span class="fortschritt" id="fortschritt-text">Frage 1 von 3</span>
+    </div>
+    <div class="frage-text" id="frage-text"></div>
+    <div class="wertetabelle-wrapper" id="tabelle-wrapper"></div>
+    <div class="antworten" id="antworten"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="weiter-btn" id="weiter-btn" onclick="naechsteFrage()">Weiter →</button>
+  </div>
+
+  <div class="ergebnis-card" id="ergebnis-card">
+    <div class="ergebnis-emoji" id="ergebnis-emoji"></div>
+    <div class="ergebnis-score" id="ergebnis-score"></div>
+    <div class="ergebnis-titel" id="ergebnis-titel"></div>
+    <div class="ergebnis-text" id="ergebnis-text"></div>
+    <div class="btn-reihe">
+      <button class="nochmal-btn" onclick="nochmal()">Nochmal versuchen 🔄</button>
+      <button class="nochmal-btn" onclick="zurueckZurLandkarte()" style="background:var(--primary);color:white;">← Zur Übersicht</button>
+      <button class="download-btn versteckt" id="download-btn" onclick="ergebnisDownload()">📥 Datei herunterladen</button>
+    </div>
+    <p class="download-hinweis versteckt" id="download-hinweis">Lade diese Datei bei IServ hoch, damit deine Lehrerin deinen Fortschritt sehen kann.</p>
+  </div>
+</div>
+
+<script>
+// ========== KOMPETENZEN ==========
+const kompetenzen = [
+  { id: '1_2', schlagwort: 'Begriffe benennen', text: 'Ich kann die Begriffe „Ausgangsgröße" und „zugeordnete Größe" an einem Beispiel selbst benennen.' },
+  { id: '1_1', schlagwort: 'Ausgangsgröße / zugeordnete Größe', text: 'Ich kann die Begriffe „Ausgangsgröße" und „zugeordnete Größe" in einer Tabelle, einem Diagramm oder einer Situation wiederfinden.' },
+  { id: '1_3', schlagwort: 'Darstellungsformen', text: 'Ich kenne alle Möglichkeiten, eine Zuordnung darzustellen.' },
+  { id: '1_4', schlagwort: 'Diagramm lesen', text: 'Ich kann ein Diagramm lesen und beurteilen: Ich weiß, welche Achse die Ausgangsgröße zeigt, wie eine korrekte Skalierung aussieht und wie ein Punkt richtig eingetragen wird.' },
+  { id: '1_5', schlagwort: 'Diagramm zeichnen ✎', text: 'Ich kann ein Diagramm auf Kästchenpapier korrekt mit Bleistift und Lineal zeichnen.' },
+  { id: '1_6', schlagwort: 'Diagramm zuordnen', text: 'Ich kann ein Diagramm einer Alltagssituation zuordnen und meine Wahl begründen.' },
+  { id: '1_7', schlagwort: 'Diagramm ablesen', text: 'Ich kann Werte aus einem Diagramm ablesen und eine Wertetabelle dazu erstellen.' },
+  { id: '1_8', schlagwort: 'Wertetabelle aus Situation', text: 'Ich kann eine Wertetabelle zu einer Alltagssituation erstellen.' },
+  { id: '1_9', schlagwort: 'Wertetabelle aus Formel', text: 'Ich kann eine Wertetabelle aus der Rechenvorschrift (Formel) erstellen.' },
+  { id: '1_10', schlagwort: 'Diagramm erstellen', text: 'Ich kann ein Diagramm aufgrund einer Wertetabelle formgerecht erstellen.' },
+  { id: '1_11', schlagwort: 'Formel aus Tabelle', text: 'Ich kann die Rechenvorschrift/Formel einer Zuordnung aus einer Wertetabelle erstellen.' },
+  { id: '1_12', schlagwort: 'Proportional / Antiproportional', text: 'Ich kann überprüfen, ob eine Zuordnung proportional oder antiproportional ist.' },
+  { id: '1_13', schlagwort: 'Je-mehr-desto-mehr vs. proportional', text: 'Ich kenne den Unterschied zwischen einer Je-mehr-desto-mehr- und einer proportionalen Zuordnung.' }
+];
+
+// Immer 3 offen; für jede grün bestandene Kompetenz rutscht eine weitere nach.
+function freigeschalteteAnzahl() {
+  const gruenCount = kompetenzen.filter(k => lernstand[k.id] === 'gruen').length;
+  return Math.min(3 + gruenCount, kompetenzen.length);
+}
+
+// ========== AUFGABEN ==========
+const aufgabenPool = {
+  1_1: [
+    {
+      format: 'quer',
+      kontext: 'Ein Kind kauft Äpfel für 50 Cent pro Stück.',
+      frage: 'Was ist die <strong>Ausgangsgröße</strong> in dieser Tabelle?',
+      kopfzeile: ['', '1', '2', '3', '4', '5'],
+      zeilen: [
+        { label: 'Anzahl Äpfel', werte: ['1', '2', '3', '4', '5'] },
+        { label: 'Preis in €', werte: ['0,50', '1,00', '1,50', '2,00', '2,50'] }
+      ],
+      optionen: ['Zeile „Anzahl Äpfel"', 'Zeile „Preis in €"', 'Spalte 1'],
+      richtig: 0,
+      erklaerung: '„Anzahl Äpfel" ist die Ausgangsgröße – sie wird vorgegeben, der Preis wird daraus berechnet. Eine einzelne Spalte kann keine Ausgangsgröße sein.'
+    },
+    {
+      format: 'quer',
+      kontext: 'An einem Sommertag werden Temperaturen und Eisverkäufe gemessen.',
+      frage: 'Was ist die <strong>Ausgangsgröße</strong> in dieser Tabelle?',
+      kopfzeile: ['', '1', '2', '3', '4'],
+      zeilen: [
+        { label: 'Temperatur (°C)', werte: ['20', '25', '30', '35'] },
+        { label: 'Eisverkäufe (Stück)', werte: ['80', '130', '200', '280'] }
+      ],
+      optionen: ['Zeile „Temperatur (°C)"', 'Zeile „Eisverkäufe (Stück)"', 'Spalte 2'],
+      richtig: 0,
+      erklaerung: 'Die Temperatur ist die Ausgangsgröße – sie ist vorgegeben, und die Eisverkäufe hängen davon ab. Spalte 2 ist nur ein einzelner Messwert.'
+    },
+    {
+      format: 'quer',
+      kontext: 'Wasser wird in einen Behälter gefüllt.',
+      frage: 'Was ist die <strong>zugeordnete Größe</strong> in dieser Tabelle?',
+      kopfzeile: ['', '1', '2', '3', '4', '5'],
+      zeilen: [
+        { label: 'Zeit in Minuten', werte: ['1', '2', '3', '4', '5'] },
+        { label: 'Füllmenge in Litern', werte: ['3', '6', '9', '12', '15'] }
+      ],
+      optionen: ['Zeile „Zeit in Minuten"', 'Zeile „Füllmenge in Litern"', 'Spalte 3'],
+      richtig: 1,
+      erklaerung: '„Füllmenge" ist die zugeordnete Größe – sie ergibt sich aus der verstrichenen Zeit. Spalte 3 ist nur ein einzelner Messwert.'
+    },
+    {
+      format: 'quer',
+      kontext: 'In einer Bäckerei werden Brötchen gebacken.',
+      frage: 'Was ist die <strong>zugeordnete Größe</strong> in dieser Tabelle?',
+      kopfzeile: ['', 'Messung 1', 'Messung 2', 'Messung 3', 'Messung 4'],
+      zeilen: [
+        { label: 'Mehl in g', werte: ['200', '400', '600', '800'] },
+        { label: 'Anzahl Brötchen', werte: ['4', '8', '12', '16'] }
+      ],
+      optionen: ['Zeile „Mehl in g"', 'Zeile „Anzahl Brötchen"', 'Spalte „Messung 2"'],
+      richtig: 1,
+      erklaerung: '„Anzahl Brötchen" ist die zugeordnete Größe – sie ergibt sich aus der Mehlmenge. „Messung 2" ist nur eine Spaltenüberschrift für einen einzelnen Messwert.'
+    },
+    {
+      format: 'hoch',
+      kontext: 'Schülerinnen verkaufen Kekse auf dem Schulfest.',
+      frage: 'Was ist die <strong>Ausgangsgröße</strong> in dieser Tabelle?',
+      spalten: ['Anzahl Kekse', 'Einnahmen in €'],
+      zeilen: [['5','2,50'],['10','5,00'],['15','7,50'],['20','10,00']],
+      optionen: ['Spalte „Anzahl Kekse"', 'Spalte „Einnahmen in €"', 'Zeile 1'],
+      richtig: 0,
+      erklaerung: '„Anzahl Kekse" ist die Ausgangsgröße – die Einnahmen ergeben sich daraus. Zeile 1 enthält nur ein einzelnes Wertepaar.'
+    },
+    {
+      format: 'hoch',
+      kontext: 'Pizzen werden in unterschiedliche Stückzahlen geteilt.',
+      frage: 'Was ist die <strong>zugeordnete Größe</strong> in dieser Tabelle?',
+      spalten: ['Anzahl Stücke', 'Größe eines Stücks (cm²)'],
+      zeilen: [['4','125'],['5','100'],['8','62,5'],['10','50']],
+      optionen: ['Spalte „Anzahl Stücke"', 'Spalte „Größe eines Stücks (cm²)"', 'Zeile 2'],
+      richtig: 1,
+      erklaerung: '„Größe eines Stücks" ist die zugeordnete Größe – sie hängt von der Anzahl der Stücke ab. Zeile 2 ist nur ein einzelnes Wertepaar.'
+    },
+    {
+      format: 'hoch',
+      kontext: 'Ein Baum wird jedes Jahr älter.',
+      frage: 'Was ist die <strong>Ausgangsgröße</strong> in dieser Tabelle?',
+      spalten: ['Alter (Jahre)', 'Stammumfang (cm)'],
+      zeilen: [['5','20'],['10','38'],['20','71'],['50','160']],
+      optionen: ['Spalte „Alter (Jahre)"', 'Spalte „Stammumfang (cm)"', 'Zeile 3'],
+      richtig: 0,
+      erklaerung: 'Das Alter des Baums ist die Ausgangsgröße – es ist vorgegeben, und der Stammumfang hängt davon ab. Zeile 3 ist nur ein einzelnes Wertepaar.'
+    },
+    {
+      format: 'hoch',
+      kontext: 'Strandurlauber mieten Liegestühle.',
+      frage: 'Was ist die <strong>Ausgangsgröße</strong> in dieser Tabelle?',
+      spalten: ['Mietdauer (Tage)', 'Kosten (€)'],
+      zeilen: [['1','8'],['3','24'],['5','40'],['7','56']],
+      optionen: ['Spalte „Mietdauer (Tage)"', 'Spalte „Kosten (€)"', 'Zeile 4'],
+      richtig: 0,
+      erklaerung: '„Mietdauer" ist die Ausgangsgröße – die Kosten ergeben sich daraus. Zeile 4 ist nur ein einzelnes Wertepaar.'
+    }
+  ]
+  ,
+  1_2: [
+    // Horizontale Tabelle → Ausgangsgröße
+    {
+      format: 'freitext',
+      tabellenformat: 'quer',
+      kopfzeile: ['', '1', '2', '3', '4', '5'],
+      zeilen: [
+        { label: 'Anzahl Äpfel', werte: ['1', '2', '3', '4', '5'] },
+        { label: 'Preis in €', werte: ['0,50', '1,00', '1,50', '2,00', '2,50'] }
+      ],
+      frage: 'Wie nennt man die Größe in der <strong>oberen Zeile</strong>?',
+      richtig: ['ausgangsgröße', 'ausgangsgroesse', 'ausgangs größe'],
+      erklaerung: 'Die obere Zeile zeigt die Anzahl der Äpfel – das ist die Ausgangsgröße, weil sie vorgegeben wird und der Preis sich daraus ergibt.'
+    },
+    // Horizontale Tabelle → zugeordnete Größe
+    {
+      format: 'freitext',
+      tabellenformat: 'quer',
+      kopfzeile: ['', '1', '2', '3', '4', '5'],
+      zeilen: [
+        { label: 'Zeit in Minuten', werte: ['1', '2', '3', '4', '5'] },
+        { label: 'Füllmenge in Litern', werte: ['3', '6', '9', '12', '15'] }
+      ],
+      frage: 'Wie nennt man die Größe in der <strong>unteren Zeile</strong>?',
+      richtig: ['zugeordnete größe', 'zugeordnete groesse', 'zugeordnetegröße', 'zugeordnete grösse'],
+      erklaerung: 'Die untere Zeile zeigt die Füllmenge – das ist die zugeordnete Größe, weil sie sich aus der Zeit ergibt.'
+    },
+    // Vertikale Tabelle → Ausgangsgröße
+    {
+      format: 'freitext',
+      tabellenformat: 'hoch',
+      spalten: ['Anzahl Kekse', 'Einnahmen in €'],
+      zeilen: [['5','2,50'],['10','5,00'],['15','7,50'],['20','10,00']],
+      frage: 'Wie nennt man die Größe in der <strong>linken Spalte</strong>?',
+      richtig: ['ausgangsgröße', 'ausgangsgroesse', 'ausgangs größe'],
+      erklaerung: 'Die linke Spalte zeigt die Anzahl der Kekse – das ist die Ausgangsgröße, weil die Einnahmen sich daraus ergeben.'
+    },
+    // Vertikale Tabelle → zugeordnete Größe
+    {
+      format: 'freitext',
+      tabellenformat: 'hoch',
+      spalten: ['Mietdauer (Tage)', 'Kosten (€)'],
+      zeilen: [['1','8'],['3','24'],['5','40'],['7','56']],
+      frage: 'Wie nennt man die Größe in der <strong>rechten Spalte</strong>?',
+      richtig: ['zugeordnete größe', 'zugeordnete groesse', 'zugeordnetegröße', 'zugeordnete grösse'],
+      erklaerung: 'Die rechte Spalte zeigt die Kosten – das ist die zugeordnete Größe, weil sie von der Mietdauer abhängt.'
+    },
+    // Sachsituation → Ausgangsgröße
+    {
+      format: 'freitext',
+      tabellenformat: null,
+      situation: 'Ein Taxifahrer fährt unterschiedlich viele Kilometer. Je mehr Kilometer der Fahrgast fährt, desto mehr zahlt er.',
+      frage: 'Wie nennt man die Kilometerzahl in dieser Zuordnung?',
+      richtig: ['ausgangsgröße', 'ausgangsgroesse', 'ausgangs größe'],
+      erklaerung: 'Die Kilometerzahl ist die Ausgangsgröße – sie wird vorgegeben und der Preis ergibt sich daraus.'
+    },
+    // Sachsituation → zugeordnete Größe
+    {
+      format: 'freitext',
+      tabellenformat: null,
+      situation: 'In einer Bäckerei hängt die Anzahl der Brötchen davon ab, wie viel Mehl verwendet wird.',
+      frage: 'Wie nennt man die Anzahl der Brötchen in dieser Zuordnung?',
+      richtig: ['zugeordnete größe', 'zugeordnete groesse', 'zugeordnetegröße', 'zugeordnete grösse'],
+      erklaerung: 'Die Anzahl der Brötchen ist die zugeordnete Größe – sie ergibt sich aus der Mehlmenge.'
+    },
+    // Definition → Ausgangsgröße
+    {
+      format: 'freitext',
+      tabellenformat: null,
+      situation: 'Diese Größe wird vorgegeben. Von ihr hängt die andere Größe ab.',
+      frage: 'Wie nennt man diese Größe?',
+      richtig: ['ausgangsgröße', 'ausgangsgroesse', 'ausgangs größe'],
+      erklaerung: 'Das ist die Ausgangsgröße – sie wird vorgegeben und bestimmt den Wert der anderen Größe.'
+    },
+    // Definition → zugeordnete Größe
+    {
+      format: 'freitext',
+      tabellenformat: null,
+      situation: 'Diese Größe ergibt sich aus der anderen. Sie wird nicht vorgegeben, sondern berechnet oder abgelesen.',
+      frage: 'Wie nennt man diese Größe?',
+      richtig: ['zugeordnete größe', 'zugeordnete groesse', 'zugeordnetegröße', 'zugeordnete grösse'],
+      erklaerung: 'Das ist die zugeordnete Größe – sie ergibt sich aus der Ausgangsgröße.'
+    }    ,
+    {
+      format: 'mc_erklaerung',
+      kontext: 'Max sagt: „Die Ausgangsgröße ist immer die kleinere Zahl."',
+      frage: 'Hat Max recht?',
+      optionen: [
+        'Ja, die Ausgangsgröße ist immer kleiner.',
+        'Nein, die Ausgangsgröße ist die Größe, die vorgegeben wird – sie kann auch größer sein.',
+        'Nein, die Ausgangsgröße ist immer die größere Zahl.',
+        'Ja, weil x immer kleiner als y ist.'
+      ],
+      richtig: 1,
+      erklaerung: 'Die Ausgangsgröße ist die Größe, von der die Zuordnung ausgeht – also die, die vorgegeben wird. Sie kann größer oder kleiner sein als die zugeordnete Größe.'
+    },
+    {
+      format: 'mc_erklaerung',
+      kontext: 'Lisa sagt: „Beim Taxifahren ist der Preis die Ausgangsgröße, weil ich den Preis bezahle."',
+      frage: 'Hat Lisa recht?',
+      optionen: [
+        'Ja, weil der Preis am Ende steht.',
+        'Nein, die Kilometeranzahl ist die Ausgangsgröße – der Preis ergibt sich daraus.',
+        'Ja, weil der Preis vorgegeben ist.',
+        'Nein, weil Geld keine Größe ist.'
+      ],
+      richtig: 1,
+      erklaerung: 'Die Ausgangsgröße ist die Kilometerzahl – sie wird vorgegeben. Der Preis ist die zugeordnete Größe, weil er sich aus der Strecke ergibt.'
+    },
+    {
+      format: 'mc_erklaerung',
+      kontext: 'Wertetabelle: x = Mehl in g, y = Anzahl Brötchen. Tim sagt: „x ist die zugeordnete Größe, weil y von x abhängt."',
+      frage: 'Hat Tim recht?',
+      optionen: [
+        'Ja, weil y von x abhängt.',
+        'Nein, wenn y von x abhängt, ist x die Ausgangsgröße – nicht die zugeordnete.',
+        'Ja, die zugeordnete Größe steht immer links.',
+        'Nein, weil x immer die Ausgangsgröße ist.'
+      ],
+      richtig: 1,
+      erklaerung: 'Wenn y von x abhängt, ist x die Ausgangsgröße. Die zugeordnete Größe ist y – sie ergibt sich aus x.'
+    },
+    {
+      format: 'mc_erklaerung',
+      kontext: 'Anna sagt: „Die zugeordnete Größe wird berechnet oder abgelesen – sie hängt von der Ausgangsgröße ab."',
+      frage: 'Hat Anna recht?',
+      optionen: [
+        'Nein, die zugeordnete Größe wird vorgegeben.',
+        'Nein, beide Größen werden berechnet.',
+        'Ja, das ist eine korrekte Erklärung.',
+        'Ja, aber nur wenn x kleiner als y ist.'
+      ],
+      richtig: 2,
+      erklaerung: 'Anna hat recht – die zugeordnete Größe ergibt sich aus der Ausgangsgröße. Sie wird nicht vorgegeben, sondern hängt von ihr ab.'
+    }
+  ]
+  ,
+  1_3: [
+    {
+      format: 'freitext',
+      tabellenformat: null,
+      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 90" width="240" height="90" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+  <rect x="0" y="0" width="60" height="30" fill="#3b5bdb" opacity="0.15" stroke="#3b5bdb" stroke-width="1"/>
+  <rect x="60" y="0" width="45" height="30" fill="none" stroke="#ccc" stroke-width="1"/>
+  <rect x="105" y="0" width="45" height="30" fill="none" stroke="#ccc" stroke-width="1"/>
+  <rect x="150" y="0" width="45" height="30" fill="none" stroke="#ccc" stroke-width="1"/>
+  <rect x="195" y="0" width="45" height="30" fill="none" stroke="#ccc" stroke-width="1"/>
+  <rect x="0" y="30" width="60" height="30" fill="#3b5bdb" opacity="0.08" stroke="#3b5bdb" stroke-width="1"/>
+  <rect x="60" y="30" width="45" height="30" fill="none" stroke="#ccc" stroke-width="1"/>
+  <rect x="105" y="30" width="45" height="30" fill="none" stroke="#ccc" stroke-width="1"/>
+  <rect x="150" y="30" width="45" height="30" fill="none" stroke="#ccc" stroke-width="1"/>
+  <rect x="195" y="30" width="45" height="30" fill="none" stroke="#ccc" stroke-width="1"/>
+  <text x="30" y="20" text-anchor="middle" font-size="9" fill="#3b5bdb" font-weight="bold" font-family="Arial">x</text>
+  <text x="82" y="20" text-anchor="middle" font-size="10" fill="#333" font-family="Arial">1</text>
+  <text x="127" y="20" text-anchor="middle" font-size="10" fill="#333" font-family="Arial">2</text>
+  <text x="172" y="20" text-anchor="middle" font-size="10" fill="#333" font-family="Arial">3</text>
+  <text x="217" y="20" text-anchor="middle" font-size="10" fill="#333" font-family="Arial">4</text>
+  <text x="30" y="50" text-anchor="middle" font-size="9" fill="#3b5bdb" font-weight="bold" font-family="Arial">y</text>
+  <text x="82" y="50" text-anchor="middle" font-size="10" fill="#333" font-family="Arial">3</text>
+  <text x="127" y="50" text-anchor="middle" font-size="10" fill="#333" font-family="Arial">6</text>
+  <text x="172" y="50" text-anchor="middle" font-size="10" fill="#333" font-family="Arial">9</text>
+  <text x="217" y="50" text-anchor="middle" font-size="10" fill="#333" font-family="Arial">12</text>
+  <text x="120" y="80" text-anchor="middle" font-size="9" fill="#888" font-family="Arial" font-style="italic">Wie heißt diese Darstellungsform?</text>
+</svg>`,
+      frage: 'Wie heißt diese Darstellungsform?',
+      tipp: 'W',
+      richtig: ['wertetabelle', 'werte tabelle', 'werttabelle'],
+      erklaerung: 'Das ist eine Wertetabelle – alle x-Werte stehen in der oberen Zeile, die zugehörigen y-Werte direkt darunter.'
+    },
+    {
+      format: 'freitext',
+      tabellenformat: null,
+      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 130" width="160" height="130" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+  <rect x="10" y="5" width="60" height="22" fill="#3b5bdb" opacity="0.15" stroke="#3b5bdb" stroke-width="1"/>
+  <rect x="70" y="5" width="80" height="22" fill="#3b5bdb" opacity="0.08" stroke="#3b5bdb" stroke-width="1"/>
+  <rect x="10" y="27" width="60" height="22" fill="none" stroke="#ccc" stroke-width="1"/>
+  <rect x="70" y="27" width="80" height="22" fill="none" stroke="#ccc" stroke-width="1"/>
+  <rect x="10" y="49" width="60" height="22" fill="none" stroke="#ccc" stroke-width="1"/>
+  <rect x="70" y="49" width="80" height="22" fill="none" stroke="#ccc" stroke-width="1"/>
+  <rect x="10" y="71" width="60" height="22" fill="none" stroke="#ccc" stroke-width="1"/>
+  <rect x="70" y="71" width="80" height="22" fill="none" stroke="#ccc" stroke-width="1"/>
+  <text x="40" y="20" text-anchor="middle" font-size="9" fill="#3b5bdb" font-weight="bold" font-family="Arial">x</text>
+  <text x="110" y="20" text-anchor="middle" font-size="9" fill="#3b5bdb" font-weight="bold" font-family="Arial">y</text>
+  <text x="40" y="42" text-anchor="middle" font-size="10" fill="#333" font-family="Arial">1</text>
+  <text x="110" y="42" text-anchor="middle" font-size="10" fill="#333" font-family="Arial">3</text>
+  <text x="40" y="64" text-anchor="middle" font-size="10" fill="#333" font-family="Arial">2</text>
+  <text x="110" y="64" text-anchor="middle" font-size="10" fill="#333" font-family="Arial">6</text>
+  <text x="40" y="86" text-anchor="middle" font-size="10" fill="#333" font-family="Arial">3</text>
+  <text x="110" y="86" text-anchor="middle" font-size="10" fill="#333" font-family="Arial">9</text>
+  <text x="80" y="118" text-anchor="middle" font-size="9" fill="#888" font-family="Arial" font-style="italic">Wie heißt diese Darstellungsform?</text>
+</svg>`,
+      frage: 'Wie heißt diese Darstellungsform?',
+      tipp: 'W',
+      richtig: ['wertetabelle', 'werte tabelle', 'werttabelle'],
+      erklaerung: 'Das ist eine Wertetabelle – x und y stehen als zwei Spalten, die Wertepaare stehen zeilenweise untereinander.'
+    },
+    {
+      format: 'freitext',
+      tabellenformat: null,
+      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 120" width="240" height="120" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+  <ellipse cx="65" cy="55" rx="50" ry="45" fill="#e8f0ff" stroke="#3b5bdb" stroke-width="1.5"/>
+  <ellipse cx="175" cy="55" rx="50" ry="45" fill="#f0ffe8" stroke="#3b5bdb" stroke-width="1.5"/>
+  <text x="65" y="10" text-anchor="middle" font-size="9" fill="#3b5bdb" font-weight="bold" font-family="Arial">x</text>
+  <text x="175" y="10" text-anchor="middle" font-size="9" fill="#3b5bdb" font-weight="bold" font-family="Arial">y</text>
+  <text x="65" y="38" text-anchor="middle" font-size="11" fill="#333" font-family="Arial">1</text>
+  <text x="65" y="58" text-anchor="middle" font-size="11" fill="#333" font-family="Arial">2</text>
+  <text x="65" y="78" text-anchor="middle" font-size="11" fill="#333" font-family="Arial">3</text>
+  <text x="175" y="38" text-anchor="middle" font-size="11" fill="#333" font-family="Arial">3</text>
+  <text x="175" y="58" text-anchor="middle" font-size="11" fill="#333" font-family="Arial">6</text>
+  <text x="175" y="78" text-anchor="middle" font-size="11" fill="#333" font-family="Arial">9</text>
+  <defs><marker id="arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#888"/></marker></defs>
+  <line x1="82" y1="36" x2="158" y2="36" stroke="#888" stroke-width="1.2" marker-end="url(#arr)"/>
+  <line x1="82" y1="56" x2="158" y2="56" stroke="#888" stroke-width="1.2" marker-end="url(#arr)"/>
+  <line x1="82" y1="76" x2="158" y2="76" stroke="#888" stroke-width="1.2" marker-end="url(#arr)"/>
+  <text x="120" y="113" text-anchor="middle" font-size="9" fill="#888" font-family="Arial" font-style="italic">Wie heißt diese Darstellungsform?</text>
+</svg>`,
+      frage: 'Wie heißt diese Darstellungsform?',
+      tipp: 'P',
+      richtig: ['pfeildiagramm', 'pfeil diagramm', 'pfeilbild'],
+      erklaerung: 'Das ist ein Pfeildiagramm – Pfeile zeigen, welcher x-Wert welchem y-Wert zugeordnet wird.'
+    },
+    {
+      format: 'freitext',
+      tabellenformat: null,
+      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 160" width="200" height="160" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+  <line x1="30" y1="130" x2="185" y2="130" stroke="#333" stroke-width="1.8"/>
+  <line x1="30" y1="130" x2="30" y2="15" stroke="#333" stroke-width="1.8"/>
+  <polygon points="185,125 193,130 185,135" fill="#333"/>
+  <polygon points="25,15 30,7 35,15" fill="#333"/>
+  <text x="190" y="134" font-size="11" fill="#333" font-weight="bold" font-family="Arial">x</text>
+  <text x="24" y="10" font-size="11" fill="#333" font-weight="bold" font-family="Arial">y</text>
+  <line x1="28" y1="105" x2="32" y2="105" stroke="#666" stroke-width="1"/><text x="22" y="109" font-size="8" fill="#666" font-family="Arial" text-anchor="end">2</text>
+  <line x1="28" y1="80" x2="32" y2="80" stroke="#666" stroke-width="1"/><text x="22" y="84" font-size="8" fill="#666" font-family="Arial" text-anchor="end">4</text>
+  <line x1="28" y1="55" x2="32" y2="55" stroke="#666" stroke-width="1"/><text x="22" y="59" font-size="8" fill="#666" font-family="Arial" text-anchor="end">6</text>
+  <line x1="65" y1="128" x2="65" y2="132" stroke="#666" stroke-width="1"/><text x="65" y="142" font-size="8" fill="#666" font-family="Arial" text-anchor="middle">1</text>
+  <line x1="100" y1="128" x2="100" y2="132" stroke="#666" stroke-width="1"/><text x="100" y="142" font-size="8" fill="#666" font-family="Arial" text-anchor="middle">2</text>
+  <line x1="135" y1="128" x2="135" y2="132" stroke="#666" stroke-width="1"/><text x="135" y="142" font-size="8" fill="#666" font-family="Arial" text-anchor="middle">3</text>
+  <line x1="170" y1="128" x2="170" y2="132" stroke="#666" stroke-width="1"/><text x="170" y="142" font-size="8" fill="#666" font-family="Arial" text-anchor="middle">4</text>
+  <circle cx="65" cy="105" r="4" fill="#3b5bdb"/>
+  <circle cx="100" cy="80" r="4" fill="#3b5bdb"/>
+  <circle cx="135" cy="55" r="4" fill="#3b5bdb"/>
+  <circle cx="170" cy="30" r="4" fill="#3b5bdb"/>
+  <text x="100" y="158" text-anchor="middle" font-size="9" fill="#888" font-family="Arial" font-style="italic">Wie heißt diese Darstellungsform?</text>
+</svg>`,
+      frage: 'Wie heißt diese Darstellungsform?',
+      tipp: 'D',
+      richtig: ['diagramm'],
+      erklaerung: 'Das ist ein Diagramm – die Wertepaare werden als Punkte in ein Koordinatensystem eingetragen.'
+    },
+    {
+      format: 'freitext',
+      tabellenformat: null,
+      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 110" width="240" height="110" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+  <rect x="80" y="25" width="80" height="50" rx="8" fill="#f0f4ff" stroke="#3b5bdb" stroke-width="2"/>
+  <text x="120" y="46" text-anchor="middle" font-size="9" fill="#3b5bdb" font-weight="bold" font-family="Arial">Regel:</text>
+  <text x="120" y="62" text-anchor="middle" font-size="12" fill="#3b5bdb" font-family="Arial">× 3</text>
+  <text x="20" y="54" text-anchor="middle" font-size="13" fill="#333" font-family="Arial" font-weight="bold">4</text>
+  <line x1="35" y1="51" x2="76" y2="51" stroke="#888" stroke-width="1.5"/>
+  <polygon points="76,47 84,51 76,55" fill="#888"/>
+  <line x1="164" y1="51" x2="200" y2="51" stroke="#888" stroke-width="1.5"/>
+  <polygon points="200,47 208,51 200,55" fill="#888"/>
+  <text x="218" y="54" text-anchor="middle" font-size="13" fill="#333" font-family="Arial" font-weight="bold">12</text>
+  <text x="120" y="100" text-anchor="middle" font-size="9" fill="#888" font-family="Arial" font-style="italic">Wie heißt diese Darstellungsform?</text>
+</svg>`,
+      frage: 'Wie heißt diese Darstellungsform?',
+      tipp: 'R',
+      richtig: ['rechenmaschine', 'rechen maschine'],
+      erklaerung: 'Das ist eine Rechenmaschine – sie zeigt, welche Rechenregel auf die Eingabe angewendet wird.'
+    },
+    {
+      format: 'freitext',
+      tabellenformat: null,
+      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 110" width="240" height="110" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+  <rect x="15" y="15" width="210" height="68" rx="6" fill="#fffbe8" stroke="#e0c040" stroke-width="1.5"/>
+  <text x="120" y="35" text-anchor="middle" font-size="10" fill="#333" font-family="Arial">Ein Taxifahrer berechnet 2€</text>
+  <text x="120" y="51" text-anchor="middle" font-size="10" fill="#333" font-family="Arial">pro Kilometer. Wie viel kostet</text>
+  <text x="120" y="67" text-anchor="middle" font-size="10" fill="#333" font-family="Arial">eine Fahrt von 5 km?</text>
+  <text x="120" y="100" text-anchor="middle" font-size="9" fill="#888" font-family="Arial" font-style="italic">Wie heißt diese Darstellungsform?</text>
+</svg>`,
+      frage: 'Wie heißt diese Darstellungsform?',
+      tipp: 'S',
+      richtig: ['sachsituation', 'sach situation', 'sachaufgabe', 'text'],
+      erklaerung: 'Das ist eine Sachsituation – die Zuordnung wird als beschreibender Text dargestellt.'
+    }
+  ]
+  ,
+  1_4: [
+    {
+      format: 'mc',
+      tabelleHtml: `<table style="border-collapse:collapse;font-size:0.9rem;margin:0 auto 4px auto;"><thead><tr><th style="border:1px solid #ccc;padding:4px 10px;background:#f0f4ff;color:#3b5bdb;">x</th><td style="border:1px solid #ccc;padding:4px 10px;">1</td><td style="border:1px solid #ccc;padding:4px 10px;">2</td><td style="border:1px solid #ccc;padding:4px 10px;">3</td></tr><tr><th style="border:1px solid #ccc;padding:4px 10px;background:#f0f4ff;color:#3b5bdb;">y</th><td style="border:1px solid #ccc;padding:4px 10px;">2</td><td style="border:1px solid #ccc;padding:4px 10px;">4</td><td style="border:1px solid #ccc;padding:4px 10px;">6</td></tr></thead></table>`,
+      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 165" width="200" height="165" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+  <line x1="35" y1="130" x2="185" y2="130" stroke="#333" stroke-width="1.5"/>
+  <line x1="35" y1="130" x2="35" y2="22" stroke="#333" stroke-width="1.5"/>
+  <polygon points="185,126 191,130 185,134" fill="#333"/>
+  <polygon points="31,22 35,15 39,22" fill="#333"/>
+  <text x="193" y="134" font-size="10" fill="#333" font-weight="bold" font-family="Arial">x</text>
+  <text x="29" y="17" font-size="10" fill="#333" font-weight="bold" font-family="Arial">y</text>
+  <text x="28" y="134" font-size="8" fill="#666" font-family="Arial" text-anchor="end">0</text>
+  <line x1="75" y1="128" x2="75" y2="132" stroke="#666" stroke-width="1"/>
+  <text x="75" y="142" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">1</text>
+  <line x1="115" y1="128" x2="115" y2="132" stroke="#666" stroke-width="1"/>
+  <text x="115" y="142" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">2</text>
+  <line x1="155" y1="128" x2="155" y2="132" stroke="#666" stroke-width="1"/>
+  <text x="155" y="142" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">3</text>
+  <line x1="33" y1="110" x2="37" y2="110" stroke="#666" stroke-width="1"/>
+  <text x="28" y="114" font-size="9" fill="#666" font-family="Arial" text-anchor="end">2</text>
+  <line x1="33" y1="90" x2="37" y2="90" stroke="#666" stroke-width="1"/>
+  <text x="28" y="94" font-size="9" fill="#666" font-family="Arial" text-anchor="end">4</text>
+  <line x1="33" y1="70" x2="37" y2="70" stroke="#666" stroke-width="1"/>
+  <text x="28" y="74" font-size="9" fill="#666" font-family="Arial" text-anchor="end">6</text>
+  <circle cx="115" cy="90" r="5" fill="#3b5bdb" stroke="white" stroke-width="1.5"/>
+</svg>`,
+      kontext: 'Ein Schüler hat dieses Diagramm gezeichnet.',
+      frage: 'Was würdest du verändern?',
+      optionen: ['Ich würde die x-Achse neu zeichnen.', 'Ich würde die y-Achse neu zeichnen.', 'Ich würde den Punkt anders eintragen.', 'Ich würde nichts ändern.'],
+      richtig: 3,
+      erklaerung: 'Das Diagramm ist korrekt – die x-Achse ist gleichmäßig skaliert, die y-Achse beginnt bei 0, und der Punkt (2|4) ist richtig eingetragen.'
+    },
+    {
+      format: 'mc',
+      tabelleHtml: `<table style="border-collapse:collapse;font-size:0.9rem;margin:0 auto 4px auto;"><thead><tr><th style="border:1px solid #ccc;padding:4px 10px;background:#f0f4ff;color:#3b5bdb;">x</th><td style="border:1px solid #ccc;padding:4px 10px;">1</td><td style="border:1px solid #ccc;padding:4px 10px;">2</td><td style="border:1px solid #ccc;padding:4px 10px;">3</td></tr><tr><th style="border:1px solid #ccc;padding:4px 10px;background:#f0f4ff;color:#3b5bdb;">y</th><td style="border:1px solid #ccc;padding:4px 10px;">2</td><td style="border:1px solid #ccc;padding:4px 10px;">4</td><td style="border:1px solid #ccc;padding:4px 10px;">6</td></tr></thead></table>`,
+      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 165" width="200" height="165" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+  <line x1="35" y1="130" x2="185" y2="130" stroke="#333" stroke-width="1.5"/>
+  <line x1="35" y1="130" x2="35" y2="22" stroke="#333" stroke-width="1.5"/>
+  <polygon points="185,126 191,130 185,134" fill="#333"/>
+  <polygon points="31,22 35,15 39,22" fill="#333"/>
+  <text x="193" y="134" font-size="10" fill="#333" font-weight="bold" font-family="Arial">x</text>
+  <text x="29" y="17" font-size="10" fill="#333" font-weight="bold" font-family="Arial">y</text>
+  <text x="28" y="134" font-size="8" fill="#666" font-family="Arial" text-anchor="end">0</text>
+  <line x1="60" y1="128" x2="60" y2="132" stroke="#666" stroke-width="1"/>
+  <text x="60" y="142" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">1</text>
+  <line x1="85" y1="128" x2="85" y2="132" stroke="#666" stroke-width="1"/>
+  <text x="85" y="142" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">2</text>
+  <line x1="155" y1="128" x2="155" y2="132" stroke="#666" stroke-width="1"/>
+  <text x="155" y="142" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">3</text>
+  <line x1="33" y1="110" x2="37" y2="110" stroke="#666" stroke-width="1"/>
+  <text x="28" y="114" font-size="9" fill="#666" font-family="Arial" text-anchor="end">2</text>
+  <line x1="33" y1="90" x2="37" y2="90" stroke="#666" stroke-width="1"/>
+  <text x="28" y="94" font-size="9" fill="#666" font-family="Arial" text-anchor="end">4</text>
+  <line x1="33" y1="70" x2="37" y2="70" stroke="#666" stroke-width="1"/>
+  <text x="28" y="74" font-size="9" fill="#666" font-family="Arial" text-anchor="end">6</text>
+  <circle cx="85" cy="90" r="5" fill="#3b5bdb" stroke="white" stroke-width="1.5"/>
+</svg>`,
+      kontext: 'Ein Schüler hat dieses Diagramm gezeichnet.',
+      frage: 'Was würdest du verändern?',
+      optionen: ['Ich würde die x-Achse neu zeichnen.', 'Ich würde die y-Achse neu zeichnen.', 'Ich würde den Punkt anders eintragen.', 'Ich würde nichts ändern.'],
+      richtig: 0,
+      erklaerung: 'Die x-Achse ist falsch skaliert – die Abstände zwischen 1, 2 und 3 sind ungleichmäßig. Die Abstände müssen immer gleich groß sein.'
+    },
+    {
+      format: 'mc',
+      tabelleHtml: `<table style="border-collapse:collapse;font-size:0.9rem;margin:0 auto 4px auto;"><thead><tr><th style="border:1px solid #ccc;padding:4px 10px;background:#f0f4ff;color:#3b5bdb;">x</th><td style="border:1px solid #ccc;padding:4px 10px;">1</td><td style="border:1px solid #ccc;padding:4px 10px;">2</td><td style="border:1px solid #ccc;padding:4px 10px;">3</td></tr><tr><th style="border:1px solid #ccc;padding:4px 10px;background:#f0f4ff;color:#3b5bdb;">y</th><td style="border:1px solid #ccc;padding:4px 10px;">2</td><td style="border:1px solid #ccc;padding:4px 10px;">4</td><td style="border:1px solid #ccc;padding:4px 10px;">6</td></tr></thead></table>`,
+      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 165" width="200" height="165" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+  <line x1="35" y1="130" x2="185" y2="130" stroke="#333" stroke-width="1.5"/>
+  <line x1="35" y1="130" x2="35" y2="22" stroke="#333" stroke-width="1.5"/>
+  <polygon points="185,126 191,130 185,134" fill="#333"/>
+  <polygon points="31,22 35,15 39,22" fill="#333"/>
+  <text x="193" y="134" font-size="10" fill="#333" font-weight="bold" font-family="Arial">x</text>
+  <text x="29" y="17" font-size="10" fill="#333" font-weight="bold" font-family="Arial">y</text>
+  <text x="28" y="134" font-size="8" fill="#666" font-family="Arial" text-anchor="end">0</text>
+  <line x1="75" y1="128" x2="75" y2="132" stroke="#666" stroke-width="1"/>
+  <text x="75" y="142" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">1</text>
+  <line x1="115" y1="128" x2="115" y2="132" stroke="#666" stroke-width="1"/>
+  <text x="115" y="142" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">2</text>
+  <line x1="155" y1="128" x2="155" y2="132" stroke="#666" stroke-width="1"/>
+  <text x="155" y="142" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">3</text>
+  <line x1="33" y1="110" x2="37" y2="110" stroke="#666" stroke-width="1"/>
+  <text x="28" y="114" font-size="9" fill="#666" font-family="Arial" text-anchor="end">2</text>
+  <line x1="33" y1="50" x2="37" y2="50" stroke="#666" stroke-width="1"/>
+  <text x="28" y="54" font-size="9" fill="#666" font-family="Arial" text-anchor="end">4</text>
+  <line x1="33" y1="30" x2="37" y2="30" stroke="#666" stroke-width="1"/>
+  <text x="28" y="34" font-size="9" fill="#666" font-family="Arial" text-anchor="end">6</text>
+  <circle cx="115" cy="50" r="5" fill="#3b5bdb" stroke="white" stroke-width="1.5"/>
+</svg>`,
+      kontext: 'Ein Schüler hat dieses Diagramm gezeichnet.',
+      frage: 'Was würdest du verändern?',
+      optionen: ['Ich würde die x-Achse neu zeichnen.', 'Ich würde die y-Achse neu zeichnen.', 'Ich würde den Punkt anders eintragen.', 'Ich würde nichts ändern.'],
+      richtig: 1,
+      erklaerung: 'Die y-Achse ist falsch skaliert – der Abstand zwischen 2 und 4 ist viel größer als der zwischen 4 und 6. Die Abstände müssen gleichmäßig sein.'
+    },
+    {
+      format: 'mc',
+      tabelleHtml: `<table style="border-collapse:collapse;font-size:0.9rem;margin:0 auto 4px auto;"><thead><tr><th style="border:1px solid #ccc;padding:4px 10px;background:#f0f4ff;color:#3b5bdb;">x</th><td style="border:1px solid #ccc;padding:4px 10px;">1</td><td style="border:1px solid #ccc;padding:4px 10px;">2</td><td style="border:1px solid #ccc;padding:4px 10px;">3</td></tr><tr><th style="border:1px solid #ccc;padding:4px 10px;background:#f0f4ff;color:#3b5bdb;">y</th><td style="border:1px solid #ccc;padding:4px 10px;">2</td><td style="border:1px solid #ccc;padding:4px 10px;">4</td><td style="border:1px solid #ccc;padding:4px 10px;">6</td></tr></thead></table>`,
+      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 165" width="200" height="165" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+  <line x1="35" y1="130" x2="185" y2="130" stroke="#333" stroke-width="1.5"/>
+  <line x1="35" y1="130" x2="35" y2="22" stroke="#333" stroke-width="1.5"/>
+  <polygon points="185,126 191,130 185,134" fill="#333"/>
+  <polygon points="31,22 35,15 39,22" fill="#333"/>
+  <text x="193" y="134" font-size="10" fill="#333" font-weight="bold" font-family="Arial">x</text>
+  <text x="29" y="17" font-size="10" fill="#333" font-weight="bold" font-family="Arial">y</text>
+  <text x="28" y="134" font-size="8" fill="#666" font-family="Arial" text-anchor="end">0</text>
+  <line x1="75" y1="128" x2="75" y2="132" stroke="#666" stroke-width="1"/>
+  <text x="75" y="142" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">1</text>
+  <line x1="115" y1="128" x2="115" y2="132" stroke="#666" stroke-width="1"/>
+  <text x="115" y="142" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">2</text>
+  <line x1="155" y1="128" x2="155" y2="132" stroke="#666" stroke-width="1"/>
+  <text x="155" y="142" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">3</text>
+  <line x1="33" y1="110" x2="37" y2="110" stroke="#666" stroke-width="1"/>
+  <text x="28" y="114" font-size="9" fill="#666" font-family="Arial" text-anchor="end">2</text>
+  <line x1="33" y1="90" x2="37" y2="90" stroke="#666" stroke-width="1"/>
+  <text x="28" y="94" font-size="9" fill="#666" font-family="Arial" text-anchor="end">4</text>
+  <line x1="33" y1="70" x2="37" y2="70" stroke="#666" stroke-width="1"/>
+  <text x="28" y="74" font-size="9" fill="#666" font-family="Arial" text-anchor="end">6</text>
+  <circle cx="115" cy="110" r="5" fill="#3b5bdb" stroke="white" stroke-width="1.5"/>
+</svg>`,
+      kontext: 'Ein Schüler hat dieses Diagramm gezeichnet.',
+      frage: 'Was würdest du verändern?',
+      optionen: ['Ich würde die x-Achse neu zeichnen.', 'Ich würde die y-Achse neu zeichnen.', 'Ich würde den Punkt anders eintragen.', 'Ich würde nichts ändern.'],
+      richtig: 2,
+      erklaerung: 'Der Punkt ist falsch eingetragen – er liegt bei (2|2), nicht bei (2|4). Bei x = 2 muss man senkrecht bis y = 4 gehen, nicht bis y = 2.'
+    },
+    {
+      format: 'mc',
+      tabelleHtml: `<table style="border-collapse:collapse;font-size:0.9rem;margin:0 auto 4px auto;"><thead><tr><th style="border:1px solid #ccc;padding:4px 10px;background:#f0f4ff;color:#3b5bdb;">x</th><td style="border:1px solid #ccc;padding:4px 10px;">1</td><td style="border:1px solid #ccc;padding:4px 10px;">2</td><td style="border:1px solid #ccc;padding:4px 10px;">3</td></tr><tr><th style="border:1px solid #ccc;padding:4px 10px;background:#f0f4ff;color:#3b5bdb;">y</th><td style="border:1px solid #ccc;padding:4px 10px;">2</td><td style="border:1px solid #ccc;padding:4px 10px;">4</td><td style="border:1px solid #ccc;padding:4px 10px;">6</td></tr></thead></table>`,
+      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 165" width="200" height="165" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+  <line x1="35" y1="130" x2="185" y2="130" stroke="#333" stroke-width="1.5"/>
+  <line x1="35" y1="130" x2="35" y2="22" stroke="#333" stroke-width="1.5"/>
+  <polygon points="185,126 191,130 185,134" fill="#333"/>
+  <polygon points="31,22 35,15 39,22" fill="#333"/>
+  <text x="193" y="134" font-size="10" fill="#333" font-weight="bold" font-family="Arial">x</text>
+  <text x="29" y="17" font-size="10" fill="#333" font-weight="bold" font-family="Arial">y</text>
+  <text x="28" y="134" font-size="8" fill="#666" font-family="Arial" text-anchor="end">0</text>
+  <line x1="75" y1="128" x2="75" y2="132" stroke="#666" stroke-width="1"/><text x="75" y="142" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">1</text>
+  <line x1="115" y1="128" x2="115" y2="132" stroke="#666" stroke-width="1"/><text x="115" y="142" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">2</text>
+  <line x1="155" y1="128" x2="155" y2="132" stroke="#666" stroke-width="1"/><text x="155" y="142" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">3</text>
+  <line x1="33" y1="110" x2="37" y2="110" stroke="#666" stroke-width="1"/><text x="28" y="114" font-size="9" fill="#666" font-family="Arial" text-anchor="end">2</text>
+  <line x1="33" y1="90" x2="37" y2="90" stroke="#666" stroke-width="1"/><text x="28" y="94" font-size="9" fill="#666" font-family="Arial" text-anchor="end">4</text>
+  <line x1="33" y1="70" x2="37" y2="70" stroke="#666" stroke-width="1"/><text x="28" y="74" font-size="9" fill="#666" font-family="Arial" text-anchor="end">6</text>
+  <circle cx="115" cy="120" r="5" fill="#3b5bdb" stroke="white" stroke-width="1.5"/>
+</svg>`,
+      kontext: 'Ein Schüler möchte den Punkt für x\u00a0=\u00a01 eintragen.',
+      frage: 'Was würdest du verändern?',
+      optionen: ['Ich würde die x-Achse neu zeichnen.', 'Ich würde die y-Achse neu zeichnen.', 'Ich würde den Punkt anders eintragen.', 'Ich würde nichts ändern.'],
+      richtig: 2,
+      erklaerung: 'Der Punkt liegt bei x\u00a0=\u00a02, y\u00a0=\u00a01 – der Schüler hat x und y vertauscht. Richtig wäre: bei x\u00a0=\u00a01 auf der waagerechten Achse starten, dann senkrecht hoch bis y\u00a0=\u00a02.'
+    }
+  ]
+  ,
+  1_5: [
+    {
+      format: 'checkliste',
+      frage: 'Überprüfe dein gezeichnetes Diagramm. Hake jeden Punkt ab, wenn er zutrifft:',
+      items: [
+        'Mit Bleistift und Lineal gezeichnet (Achsen sauber auf den Linien des Kästchenpapiers)',
+    'x-Achse waagerecht, y-Achse senkrecht',
+    'x-Achse richtig skaliert (gleichmäßige Abstände, beginnt bei 0)',
+    'y-Achse richtig skaliert (gleichmäßige Abstände, beginnt bei 0)',
+    'x-Achse beschriftet (mit Einheit oder Größenbezeichnung)',
+    'y-Achse beschriftet (mit Einheit oder Größenbezeichnung)',
+    'Erste Koordinate (x-Wert) auf der x-Achse abgelesen',
+    'Zweite Koordinate (y-Wert) auf der y-Achse abgelesen'
+      ]
+    }
+  ]
+  ,
+  1_7: [
+    {
+      format: 'ablesen',
+      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 170" width="210" height="170" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+  <line x1="40.0" y1="25" x2="40.0" y2="130" stroke="#eee" stroke-width="1"/>
+  <line x1="63.3" y1="25" x2="63.3" y2="130" stroke="#eee" stroke-width="1"/>
+  <line x1="110.0" y1="25" x2="110.0" y2="130" stroke="#eee" stroke-width="1"/>
+  <line x1="133.3" y1="25" x2="133.3" y2="130" stroke="#eee" stroke-width="1"/>
+  <line x1="156.7" y1="25" x2="156.7" y2="130" stroke="#eee" stroke-width="1"/>
+  <line x1="180.0" y1="25" x2="180.0" y2="130" stroke="#eee" stroke-width="1"/>
+  <line x1="40" y1="130.0" x2="180" y2="130.0" stroke="#eee" stroke-width="1"/>
+  <line x1="40" y1="112.5" x2="180" y2="112.5" stroke="#eee" stroke-width="1"/>
+  <line x1="40" y1="77.5" x2="180" y2="77.5" stroke="#eee" stroke-width="1"/>
+  <line x1="40" y1="60.0" x2="180" y2="60.0" stroke="#eee" stroke-width="1"/>
+  <line x1="40" y1="42.5" x2="180" y2="42.5" stroke="#eee" stroke-width="1"/>
+  <line x1="40" y1="25.0" x2="180" y2="25.0" stroke="#eee" stroke-width="1"/>
+  <line x1="40" y1="95.0" x2="188.0" y2="95.0" stroke="#333" stroke-width="1.5"/>
+  <line x1="86.7" y1="135.0" x2="86.7" y2="20.0" stroke="#333" stroke-width="1.5"/>
+  <polygon points="188.0,92.0 194.0,95.0 188.0,98.0" fill="#333"/>
+  <polygon points="83.7,20.0 86.7,14.0 89.7,20.0" fill="#333"/>
+  <text x="198.0" y="99.0" font-size="11" fill="#333" font-weight="bold" font-family="Arial">x</text>
+  <text x="78.7" y="11.0" font-size="11" fill="#333" font-weight="bold" font-family="Arial">y</text>
+  <line x1="40.0" y1="92.0" x2="40.0" y2="98.0" stroke="#666" stroke-width="1"/>
+  <text x="40.0" y="109.0" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">-2</text>
+  <line x1="63.3" y1="92.0" x2="63.3" y2="98.0" stroke="#666" stroke-width="1"/>
+  <text x="63.3" y="109.0" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">-1</text>
+  <line x1="110.0" y1="92.0" x2="110.0" y2="98.0" stroke="#666" stroke-width="1"/>
+  <text x="110.0" y="109.0" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">1</text>
+  <line x1="133.3" y1="92.0" x2="133.3" y2="98.0" stroke="#666" stroke-width="1"/>
+  <text x="133.3" y="109.0" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">2</text>
+  <line x1="156.7" y1="92.0" x2="156.7" y2="98.0" stroke="#666" stroke-width="1"/>
+  <text x="156.7" y="109.0" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">3</text>
+  <line x1="180.0" y1="92.0" x2="180.0" y2="98.0" stroke="#666" stroke-width="1"/>
+  <text x="180.0" y="109.0" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">4</text>
+  <line x1="83.7" y1="130.0" x2="89.7" y2="130.0" stroke="#666" stroke-width="1"/>
+  <text x="79.7" y="134.0" font-size="9" fill="#666" font-family="Arial" text-anchor="end">-4</text>
+  <line x1="83.7" y1="112.5" x2="89.7" y2="112.5" stroke="#666" stroke-width="1"/>
+  <text x="79.7" y="116.5" font-size="9" fill="#666" font-family="Arial" text-anchor="end">-2</text>
+  <line x1="83.7" y1="77.5" x2="89.7" y2="77.5" stroke="#666" stroke-width="1"/>
+  <text x="79.7" y="81.5" font-size="9" fill="#666" font-family="Arial" text-anchor="end">2</text>
+  <line x1="83.7" y1="60.0" x2="89.7" y2="60.0" stroke="#666" stroke-width="1"/>
+  <text x="79.7" y="64.0" font-size="9" fill="#666" font-family="Arial" text-anchor="end">4</text>
+  <line x1="83.7" y1="42.5" x2="89.7" y2="42.5" stroke="#666" stroke-width="1"/>
+  <text x="79.7" y="46.5" font-size="9" fill="#666" font-family="Arial" text-anchor="end">6</text>
+  <line x1="83.7" y1="25.0" x2="89.7" y2="25.0" stroke="#666" stroke-width="1"/>
+  <text x="79.7" y="29.0" font-size="9" fill="#666" font-family="Arial" text-anchor="end">8</text>
+  <text x="79.7" y="108.0" font-size="9" fill="#666" font-family="Arial" text-anchor="end">0</text>
+  <circle cx="156.7" cy="42.5" r="5" fill="#3b5bdb" stroke="white" stroke-width="1.5"/>
+  <text x="163.7" y="34.5" font-size="10" fill="#3b5bdb" font-weight="bold" font-family="Arial">A</text>
+  <circle cx="63.3" cy="112.5" r="5" fill="#3b5bdb" stroke="white" stroke-width="1.5"/>
+  <text x="70.3" y="104.5" font-size="10" fill="#3b5bdb" font-weight="bold" font-family="Arial">B</text>
+  <circle cx="133.3" cy="60.0" r="5" fill="#3b5bdb" stroke="white" stroke-width="1.5"/>
+  <text x="140.3" y="52.0" font-size="10" fill="#3b5bdb" font-weight="bold" font-family="Arial">C</text>
+</svg>`,
+      frage: 'Lies die Koordinaten der Punkte A, B und C ab.',
+      punkte: [{'name':'A','x':3,'y':6},{'name':'B','x':-1,'y':-2},{'name':'C','x':2,'y':4}]
+    },
+    {
+      format: 'ablesen',
+      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 170" width="210" height="170" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+  <line x1="40.0" y1="25" x2="40.0" y2="130" stroke="#eee" stroke-width="1"/>
+  <line x1="60.0" y1="25" x2="60.0" y2="130" stroke="#eee" stroke-width="1"/>
+  <line x1="80.0" y1="25" x2="80.0" y2="130" stroke="#eee" stroke-width="1"/>
+  <line x1="120.0" y1="25" x2="120.0" y2="130" stroke="#eee" stroke-width="1"/>
+  <line x1="140.0" y1="25" x2="140.0" y2="130" stroke="#eee" stroke-width="1"/>
+  <line x1="160.0" y1="25" x2="160.0" y2="130" stroke="#eee" stroke-width="1"/>
+  <line x1="180.0" y1="25" x2="180.0" y2="130" stroke="#eee" stroke-width="1"/>
+  <line x1="40" y1="130.0" x2="180" y2="130.0" stroke="#eee" stroke-width="1"/>
+  <line x1="40" y1="112.5" x2="180" y2="112.5" stroke="#eee" stroke-width="1"/>
+  <line x1="40" y1="77.5" x2="180" y2="77.5" stroke="#eee" stroke-width="1"/>
+  <line x1="40" y1="60.0" x2="180" y2="60.0" stroke="#eee" stroke-width="1"/>
+  <line x1="40" y1="42.5" x2="180" y2="42.5" stroke="#eee" stroke-width="1"/>
+  <line x1="40" y1="25.0" x2="180" y2="25.0" stroke="#eee" stroke-width="1"/>
+  <line x1="40" y1="95.0" x2="188.0" y2="95.0" stroke="#333" stroke-width="1.5"/>
+  <line x1="100.0" y1="135.0" x2="100.0" y2="20.0" stroke="#333" stroke-width="1.5"/>
+  <polygon points="188.0,92.0 194.0,95.0 188.0,98.0" fill="#333"/>
+  <polygon points="97.0,20.0 100.0,14.0 103.0,20.0" fill="#333"/>
+  <text x="198.0" y="99.0" font-size="11" fill="#333" font-weight="bold" font-family="Arial">x</text>
+  <text x="92.0" y="11.0" font-size="11" fill="#333" font-weight="bold" font-family="Arial">y</text>
+  <line x1="40.0" y1="92.0" x2="40.0" y2="98.0" stroke="#666" stroke-width="1"/>
+  <text x="40.0" y="109.0" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">-3</text>
+  <line x1="60.0" y1="92.0" x2="60.0" y2="98.0" stroke="#666" stroke-width="1"/>
+  <text x="60.0" y="109.0" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">-2</text>
+  <line x1="80.0" y1="92.0" x2="80.0" y2="98.0" stroke="#666" stroke-width="1"/>
+  <text x="80.0" y="109.0" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">-1</text>
+  <line x1="120.0" y1="92.0" x2="120.0" y2="98.0" stroke="#666" stroke-width="1"/>
+  <text x="120.0" y="109.0" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">1</text>
+  <line x1="140.0" y1="92.0" x2="140.0" y2="98.0" stroke="#666" stroke-width="1"/>
+  <text x="140.0" y="109.0" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">2</text>
+  <line x1="160.0" y1="92.0" x2="160.0" y2="98.0" stroke="#666" stroke-width="1"/>
+  <text x="160.0" y="109.0" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">3</text>
+  <line x1="180.0" y1="92.0" x2="180.0" y2="98.0" stroke="#666" stroke-width="1"/>
+  <text x="180.0" y="109.0" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">4</text>
+  <line x1="97.0" y1="130.0" x2="103.0" y2="130.0" stroke="#666" stroke-width="1"/>
+  <text x="93.0" y="134.0" font-size="9" fill="#666" font-family="Arial" text-anchor="end">-4</text>
+  <line x1="97.0" y1="112.5" x2="103.0" y2="112.5" stroke="#666" stroke-width="1"/>
+  <text x="93.0" y="116.5" font-size="9" fill="#666" font-family="Arial" text-anchor="end">-2</text>
+  <line x1="97.0" y1="77.5" x2="103.0" y2="77.5" stroke="#666" stroke-width="1"/>
+  <text x="93.0" y="81.5" font-size="9" fill="#666" font-family="Arial" text-anchor="end">2</text>
+  <line x1="97.0" y1="60.0" x2="103.0" y2="60.0" stroke="#666" stroke-width="1"/>
+  <text x="93.0" y="64.0" font-size="9" fill="#666" font-family="Arial" text-anchor="end">4</text>
+  <line x1="97.0" y1="42.5" x2="103.0" y2="42.5" stroke="#666" stroke-width="1"/>
+  <text x="93.0" y="46.5" font-size="9" fill="#666" font-family="Arial" text-anchor="end">6</text>
+  <line x1="97.0" y1="25.0" x2="103.0" y2="25.0" stroke="#666" stroke-width="1"/>
+  <text x="93.0" y="29.0" font-size="9" fill="#666" font-family="Arial" text-anchor="end">8</text>
+  <text x="93.0" y="108.0" font-size="9" fill="#666" font-family="Arial" text-anchor="end">0</text>
+  <circle cx="60.0" cy="60.0" r="5" fill="#3b5bdb" stroke="white" stroke-width="1.5"/>
+  <text x="67.0" y="52.0" font-size="10" fill="#3b5bdb" font-weight="bold" font-family="Arial">A</text>
+  <circle cx="120.0" cy="112.5" r="5" fill="#3b5bdb" stroke="white" stroke-width="1.5"/>
+  <text x="127.0" y="104.5" font-size="10" fill="#3b5bdb" font-weight="bold" font-family="Arial">B</text>
+  <circle cx="160.0" cy="42.5" r="5" fill="#3b5bdb" stroke="white" stroke-width="1.5"/>
+  <text x="167.0" y="34.5" font-size="10" fill="#3b5bdb" font-weight="bold" font-family="Arial">C</text>
+</svg>`,
+      frage: 'Lies die Koordinaten der Punkte A, B und C ab.',
+      punkte: [{'name':'A','x':-2,'y':4},{'name':'B','x':1,'y':-2},{'name':'C','x':3,'y':6}]
+    },
+    {
+      format: 'ablesen',
+      svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 170" width="210" height="170" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+  <line x1="40.0" y1="25" x2="40.0" y2="130" stroke="#eee" stroke-width="1"/>
+  <line x1="57.5" y1="25" x2="57.5" y2="130" stroke="#eee" stroke-width="1"/>
+  <line x1="75.0" y1="25" x2="75.0" y2="130" stroke="#eee" stroke-width="1"/>
+  <line x1="110.0" y1="25" x2="110.0" y2="130" stroke="#eee" stroke-width="1"/>
+  <line x1="127.5" y1="25" x2="127.5" y2="130" stroke="#eee" stroke-width="1"/>
+  <line x1="145.0" y1="25" x2="145.0" y2="130" stroke="#eee" stroke-width="1"/>
+  <line x1="162.5" y1="25" x2="162.5" y2="130" stroke="#eee" stroke-width="1"/>
+  <line x1="180.0" y1="25" x2="180.0" y2="130" stroke="#eee" stroke-width="1"/>
+  <line x1="40" y1="130.0" x2="180" y2="130.0" stroke="#eee" stroke-width="1"/>
+  <line x1="40" y1="112.5" x2="180" y2="112.5" stroke="#eee" stroke-width="1"/>
+  <line x1="40" y1="77.5" x2="180" y2="77.5" stroke="#eee" stroke-width="1"/>
+  <line x1="40" y1="60.0" x2="180" y2="60.0" stroke="#eee" stroke-width="1"/>
+  <line x1="40" y1="42.5" x2="180" y2="42.5" stroke="#eee" stroke-width="1"/>
+  <line x1="40" y1="25.0" x2="180" y2="25.0" stroke="#eee" stroke-width="1"/>
+  <line x1="40" y1="95.0" x2="188.0" y2="95.0" stroke="#333" stroke-width="1.5"/>
+  <line x1="92.5" y1="135.0" x2="92.5" y2="20.0" stroke="#333" stroke-width="1.5"/>
+  <polygon points="188.0,92.0 194.0,95.0 188.0,98.0" fill="#333"/>
+  <polygon points="89.5,20.0 92.5,14.0 95.5,20.0" fill="#333"/>
+  <text x="198.0" y="99.0" font-size="11" fill="#333" font-weight="bold" font-family="Arial">x</text>
+  <text x="84.5" y="11.0" font-size="11" fill="#333" font-weight="bold" font-family="Arial">y</text>
+  <line x1="40.0" y1="92.0" x2="40.0" y2="98.0" stroke="#666" stroke-width="1"/>
+  <text x="40.0" y="109.0" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">-3</text>
+  <line x1="57.5" y1="92.0" x2="57.5" y2="98.0" stroke="#666" stroke-width="1"/>
+  <text x="57.5" y="109.0" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">-2</text>
+  <line x1="75.0" y1="92.0" x2="75.0" y2="98.0" stroke="#666" stroke-width="1"/>
+  <text x="75.0" y="109.0" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">-1</text>
+  <line x1="110.0" y1="92.0" x2="110.0" y2="98.0" stroke="#666" stroke-width="1"/>
+  <text x="110.0" y="109.0" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">1</text>
+  <line x1="127.5" y1="92.0" x2="127.5" y2="98.0" stroke="#666" stroke-width="1"/>
+  <text x="127.5" y="109.0" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">2</text>
+  <line x1="145.0" y1="92.0" x2="145.0" y2="98.0" stroke="#666" stroke-width="1"/>
+  <text x="145.0" y="109.0" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">3</text>
+  <line x1="162.5" y1="92.0" x2="162.5" y2="98.0" stroke="#666" stroke-width="1"/>
+  <text x="162.5" y="109.0" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">4</text>
+  <line x1="180.0" y1="92.0" x2="180.0" y2="98.0" stroke="#666" stroke-width="1"/>
+  <text x="180.0" y="109.0" font-size="9" fill="#666" font-family="Arial" text-anchor="middle">5</text>
+  <line x1="89.5" y1="130.0" x2="95.5" y2="130.0" stroke="#666" stroke-width="1"/>
+  <text x="85.5" y="134.0" font-size="9" fill="#666" font-family="Arial" text-anchor="end">-4</text>
+  <line x1="89.5" y1="112.5" x2="95.5" y2="112.5" stroke="#666" stroke-width="1"/>
+  <text x="85.5" y="116.5" font-size="9" fill="#666" font-family="Arial" text-anchor="end">-2</text>
+  <line x1="89.5" y1="77.5" x2="95.5" y2="77.5" stroke="#666" stroke-width="1"/>
+  <text x="85.5" y="81.5" font-size="9" fill="#666" font-family="Arial" text-anchor="end">2</text>
+  <line x1="89.5" y1="60.0" x2="95.5" y2="60.0" stroke="#666" stroke-width="1"/>
+  <text x="85.5" y="64.0" font-size="9" fill="#666" font-family="Arial" text-anchor="end">4</text>
+  <line x1="89.5" y1="42.5" x2="95.5" y2="42.5" stroke="#666" stroke-width="1"/>
+  <text x="85.5" y="46.5" font-size="9" fill="#666" font-family="Arial" text-anchor="end">6</text>
+  <line x1="89.5" y1="25.0" x2="95.5" y2="25.0" stroke="#666" stroke-width="1"/>
+  <text x="85.5" y="29.0" font-size="9" fill="#666" font-family="Arial" text-anchor="end">8</text>
+  <text x="85.5" y="108.0" font-size="9" fill="#666" font-family="Arial" text-anchor="end">0</text>
+  <circle cx="110.0" cy="81.9" r="5" fill="#3b5bdb" stroke="white" stroke-width="1.5"/>
+  <text x="117.0" y="73.9" font-size="10" fill="#3b5bdb" font-weight="bold" font-family="Arial">A</text>
+  <circle cx="57.5" cy="121.2" r="5" fill="#3b5bdb" stroke="white" stroke-width="1.5"/>
+  <text x="64.5" y="113.2" font-size="10" fill="#3b5bdb" font-weight="bold" font-family="Arial">B</text>
+  <circle cx="162.5" cy="42.5" r="5" fill="#3b5bdb" stroke="white" stroke-width="1.5"/>
+  <text x="169.5" y="34.5" font-size="10" fill="#3b5bdb" font-weight="bold" font-family="Arial">C</text>
+</svg>`,
+      frage: 'Lies die Koordinaten der Punkte A, B und C ab.',
+      punkte: [{'name':'A','x':1,'y':1.5},{'name':'B','x':-2,'y':-3},{'name':'C','x':4,'y':6}]
+    }
+  ]
+  // weitere Kompetenzen können hier ergänzt werden
+  '1_6': null  // wird per fetch aus aufgaben/1_6.js geladen
+};
+
+// ========== ZUSTAND ==========
+let schuelerName = '';
+let lernstand = {}; // { k1: 'gruen' | 'gelb' | null, ... }
+let versuche = {};  // { k1: 3, k2: 1, ... } – Anzahl abgeschlossener Testläufe
+let aktiveKompetenz = null;
+let aktuelleRunde = [];
+let aktuellerIndex = 0;
+let richtigCount = 0;
+let geantwortet = false;
+
+// Immer 3 offen; für jede grün bestandene ODER ≥3x erfolglos versuchte Kompetenz rutscht eine nach.
+function freigeschalteteAnzahl() {
+  const fortschritt = kompetenzen.filter(k =>
+    lernstand[k.id] === 'gruen' || (versuche[k.id] || 0) >= 3
+  ).length;
+  return Math.min(3 + fortschritt, kompetenzen.length);
+}
+
+// ========== LOKALER SPEICHER ==========
+function speichern() {
+  localStorage.setItem('zuordnungen_name', schuelerName);
+  localStorage.setItem('zuordnungen_lernstand', JSON.stringify(lernstand));
+  localStorage.setItem('zuordnungen_versuche', JSON.stringify(versuche));
+}
+
+function laden() {
+  const n = localStorage.getItem('zuordnungen_name');
+  const l = localStorage.getItem('zuordnungen_lernstand');
+  const v = localStorage.getItem('zuordnungen_versuche');
+  if (n) schuelerName = n;
+  if (l) lernstand = JSON.parse(l);
+  if (v) versuche = JSON.parse(v);
+}
+
+// ========== LOGIN ==========
+function loginBestaetigen() {
+  const input = document.getElementById('name-input').value.trim();
+  if (input.length < 2) {
+    document.getElementById('name-input').style.borderColor = 'var(--red)';
+    return;
+  }
+  schuelerName = input;
+  speichern();
+  zeigeHauptansicht();
+}
+
+function nameAendern() {
+  if (!confirm('Namen ändern?')) return;
+  localStorage.removeItem('zuordnungen_name');
+  location.reload();
+}
+
+function zeigeHauptansicht() {
+  document.getElementById('login-card').classList.add('versteckt');
+  document.getElementById('name-anzeige').classList.remove('versteckt');
+  document.getElementById('name-text').textContent = schuelerName;
+  document.getElementById('landkarte').classList.remove('versteckt');
+  document.getElementById('abgabe-hinweis').classList.add('show');
+  baueLandkarte();
+}
+
+// ========== LERNLANDKARTE ==========
+function baueLandkarte() {
+  const liste = document.getElementById('kompetenz-liste');
+  liste.innerHTML = '';
+  const maxOffen = freigeschalteteAnzahl();
+
+  kompetenzen.forEach((k, index) => {
+    const status = lernstand[k.id] || null;
+    const hatTest = !!aufgabenPool[k.id];
+    const offen = index < maxOffen;
+
+    const item = document.createElement('div');
+    item.className = 'kompetenz-item'
+      + (status === 'gruen' ? ' gruen' : status === 'gelb' ? ' gelb' : '')
+      + (!offen ? ' gesperrt' : '');
+    item.id = 'item-' + k.id;
+
+    const nr = document.createElement('span');
+    nr.className = 'kompetenz-nr';
+    nr.textContent = index + 1;
+
+    const aufkleber = document.createElement('div');
+    aufkleber.className = 'aufkleber';
+    aufkleber.id = 'aufkleber-' + k.id;
+    aufkleber.textContent = status === 'gruen' ? '🟢' : status === 'gelb' ? '🟡' : (offen ? '?' : '🔒');
+
+    const textWrap = document.createElement('span');
+    textWrap.className = 'kompetenz-text';
+    const schlagwort = document.createElement('strong');
+    schlagwort.style.cssText = 'display:block;font-size:0.8rem;color:var(--primary);margin-bottom:2px;';
+    schlagwort.textContent = k.schlagwort + (!offen ? ' (kommt noch)' : '');
+    textWrap.appendChild(schlagwort);
+    if (offen) {
+      const text = document.createElement('span');
+      text.style.fontSize = '0.88rem';
+      text.textContent = k.text;
+      textWrap.appendChild(text);
+    }
+
+    item.appendChild(nr);
+    item.appendChild(aufkleber);
+    item.appendChild(textWrap);
+
+    if (hatTest && offen) {
+      const btn = document.createElement('button');
+      btn.className = 'test-starten-btn';
+      btn.textContent = status === 'gruen' ? '✓ Wiederholen' : 'Test starten';
+      btn.onclick = () => testStarten(k.id);
+      item.appendChild(btn);
+    }
+
+    liste.appendChild(item);
+  });
+}
+
+// ========== TEST ==========
+async function testStarten(kompetenzId) {
+  aktiveKompetenz = kompetenzId;
+  // Externe Aufgabendatei laden falls noch nicht geschehen
+  if (aufgabenPool[kompetenzId] === null) {
+    try {
+      const script = document.createElement('script');
+      script.src = `aufgaben/${kompetenzId}.js`;
+      await new Promise((resolve, reject) => {
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+      const varName = `aufgabenPool_${kompetenzId.replace('.','_')}`;
+      aufgabenPool[kompetenzId] = window[varName] || [];
+    } catch(e) {
+      alert('Aufgaben konnten nicht geladen werden.');
+      return;
+    }
+  }
+  const pool = aufgabenPool[kompetenzId];
+  aktuelleRunde = zufaelligeAuswahl(pool);
+  aktuellerIndex = 0;
+  richtigCount = 0;
+
+  const kNr = kompetenzen.findIndex(k => k.id === kompetenzId) + 1;
+  document.getElementById('test-titel').textContent = `Kompetenz ${kNr}`;
+
+  document.getElementById('landkarte').classList.add('versteckt');
+  document.getElementById('abgabe-hinweis').classList.remove('show');
+  document.getElementById('test-container').classList.remove('versteckt');
+  document.getElementById('test-card').style.display = 'block';
+  document.getElementById('ergebnis-card').className = 'ergebnis-card';
+
+  zeigeFrage();
+}
+
+function zufaelligeAuswahl(pool) {
+  const shuffle = arr => [...arr].sort(() => Math.random() - 0.5);
+  // Checklisten-Pool: immer alle (nur 1 Aufgabe)
+  if (pool.every(a => a.format === 'checkliste')) {
+    return pool;
+  }
+  // k1b zweistufig: 2 freitext + 2 mc_erklaerung
+  if (pool.some(a => a.format === 'freitext') && pool.some(a => a.format === 'mc_erklaerung')) {
+    const freitext = shuffle(pool.filter(a => a.format === 'freitext')).slice(0, 2);
+    const erklaerung = shuffle(pool.filter(a => a.format === 'mc_erklaerung')).slice(0, 2);
+    return [...freitext, ...erklaerung];
+  }
+  // Freitext-Pool: 2 zufällige aus allen
+  if (pool.every(a => a.format === 'freitext')) {
+    return shuffle(pool).slice(0, 2);
+  }
+  // Ablesen-Pool: alle ziehen (je 1 Aufgabe pro Typ)
+  if (pool.every(a => a.format === 'ablesen')) {
+    return [[...pool].sort(() => Math.random() - 0.5)[0]];
+  }
+  // MC-Pool (z.B. k2b): 3 zufällige aus allen
+  if (pool.every(a => a.format === 'mc')) {
+    return shuffle(pool).slice(0, 3);
+  }
+  // Standard-Pool: je eine quer + hoch + eine weitere
+  const quer = shuffle(pool.filter(a => a.format === 'quer'));
+  const hoch = shuffle(pool.filter(a => a.format === 'hoch'));
+  const auswahl = [quer[0], hoch[0]];
+  const rest = shuffle(pool.filter(a => !auswahl.includes(a)));
+  return shuffle([...auswahl, rest[0]]);
+}
+
+function zeigeFrage() {
+  const aufgabe = aktuelleRunde[aktuellerIndex];
+  geantwortet = false;
+
+  const istStufe2 = aktuelleRunde[aktuellerIndex]?.format === 'mc_erklaerung';
+  const stufenHinweis = istStufe2 ? ' · Teil 2: Verstehen' : ' · Teil 1: Benennen';
+  const zeigeHinweis = aktuelleRunde.some(a => a.format === 'mc_erklaerung') && aktuelleRunde.some(a => a.format === 'freitext');
+  document.getElementById('fortschritt-text').textContent = `Frage ${aktuellerIndex + 1} von ${aktuelleRunde.length}${zeigeHinweis ? stufenHinweis : ''}`;
+  document.getElementById('frage-text').innerHTML = (aufgabe.kontext ? `<em style="color:var(--muted);font-weight:600;font-size:0.88rem">${aufgabe.kontext}</em><br><br>` : '') + aufgabe.frage;
+
+  const wrapper = document.getElementById('tabelle-wrapper');
+  wrapper.innerHTML = '';
+
+  // Ablesen-Format
+  if (aufgabe.format === 'ablesen') {
+    // SVG anzeigen
+    if (aufgabe.svg) {
+      const div = document.createElement('div');
+      div.style.cssText = 'margin-bottom:10px;';
+      div.innerHTML = aufgabe.svg;
+      wrapper.appendChild(div);
+    }
+    // Tabelle mit 6 Eingabefeldern
+    const antworten = document.getElementById('antworten');
+    antworten.innerHTML = '';
+    const tbl = document.createElement('table');
+    tbl.style.cssText = 'border-collapse:collapse;margin:0 auto;font-size:0.95rem;';
+    const thead = document.createElement('thead');
+    const trH = document.createElement('tr');
+    ['Punkt','x','y'].forEach(h => {
+      const th = document.createElement('th');
+      th.textContent = h;
+      th.style.cssText = 'border:1px solid #ccc;padding:6px 12px;background:#f0f4ff;color:#3b5bdb;font-weight:bold;';
+      trH.appendChild(th);
+    });
+    thead.appendChild(trH);
+    tbl.appendChild(thead);
+    const tbody = document.createElement('tbody');
+    // Punkte zufällig mischen
+    const gemischt = [...aufgabe.punkte].sort(() => Math.random() - 0.5);
+    gemischt.forEach((p, i) => {
+      const tr = document.createElement('tr');
+      const tdNr = document.createElement('td');
+      tdNr.textContent = p.name || (i + 1);
+      tdNr.style.cssText = 'border:1px solid #ccc;padding:6px 12px;text-align:center;font-weight:bold;color:#3b5bdb;';
+      tr.appendChild(tdNr);
+      ['x','y'].forEach(coord => {
+        const td = document.createElement('td');
+        td.style.cssText = 'border:1px solid #ccc;padding:4px 6px;';
+        const inp = document.createElement('input');
+        inp.type = 'text';
+        inp.id = `ablese_${p.name || i}_${coord}`;
+        inp.style.cssText = 'width:60px;padding:4px 6px;border:1px solid #ccc;border-radius:4px;font-size:1rem;text-align:center;';
+        inp.inputMode = 'decimal';
+        inp.addEventListener('keydown', e => { if (e.key === 'Enter') pruefeAblesen(aufgabe); });
+        td.appendChild(inp);
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+    tbl.appendChild(tbody);
+    antworten.appendChild(tbl);
+    // Prüfen-Button
+    const btnWrap = document.createElement('div');
+    btnWrap.style.cssText = 'margin-top:10px;text-align:center;';
+    const btn = document.createElement('button');
+    btn.className = 'test-starten-btn';
+    btn.textContent = 'Prüfen';
+    btn.onclick = () => pruefeAblesen(aufgabe);
+    btnWrap.appendChild(btn);
+    antworten.appendChild(btnWrap);
+    document.getElementById('feedback').className = 'feedback';
+    document.getElementById('weiter-btn').className = 'weiter-btn';
+    // Fokus auf erstes Feld
+    const ersterKey = (aufgabe.punkte[0].name || 0);
+    setTimeout(() => document.getElementById(`ablese_${ersterKey}_x`)?.focus(), 100);
+    return;
+  }
+
+  // Checklisten-Format
+  if (aufgabe.format === 'checkliste') {
+    wrapper.innerHTML = '';
+    const antworten = document.getElementById('antworten');
+    antworten.innerHTML = '';
+    const form = document.createElement('div');
+    form.style.cssText = 'display:flex;flex-direction:column;gap:10px;margin-top:4px;';
+    aufgabe.items.forEach((item, i) => {
+      const label = document.createElement('label');
+      label.style.cssText = 'display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:0.92rem;line-height:1.4;';
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.id = 'check_' + i;
+      cb.style.cssText = 'width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:var(--primary);cursor:pointer;';
+      cb.addEventListener('change', () => pruefeCheckliste(aufgabe));
+      const span = document.createElement('span');
+      span.textContent = item;
+      label.appendChild(cb);
+      label.appendChild(span);
+      form.appendChild(label);
+    });
+    antworten.appendChild(form);
+    document.getElementById('feedback').className = 'feedback';
+    document.getElementById('weiter-btn').className = 'weiter-btn';
+    return;
+  }
+
+  // Freitext-Format
+  if (aufgabe.format === 'freitext') {
+    // Situation oder Tabelle anzeigen
+    if (aufgabe.svgLinks && aufgabe.svgRechts) {
+      const div = document.createElement('div');
+      div.style.cssText = 'display:flex;gap:12px;justify-content:center;margin-bottom:8px;flex-wrap:wrap;';
+      div.innerHTML = aufgabe.svgLinks + aufgabe.svgRechts;
+      wrapper.appendChild(div);
+    } else if (aufgabe.svg) {
+      const div = document.createElement('div');
+      div.style.cssText = 'margin-bottom:8px;';
+      div.innerHTML = aufgabe.svg;
+      wrapper.appendChild(div);
+    } else if (aufgabe.situation) {
+      const p = document.createElement('p');
+      p.style.cssText = 'background:#f0f4ff;border-left:3px solid var(--primary);padding:10px 14px;border-radius:4px;font-size:0.92rem;margin-bottom:8px;';
+      p.textContent = aufgabe.situation;
+      wrapper.appendChild(p);
+    } else if (aufgabe.tabellenformat) {
+      const table = document.createElement('table');
+      if (aufgabe.tabellenformat === 'quer') {
+        const thead = document.createElement('thead');
+        const trHead = document.createElement('tr');
+        aufgabe.kopfzeile.forEach(k => { const th = document.createElement('th'); th.textContent = k; trHead.appendChild(th); });
+        thead.appendChild(trHead); table.appendChild(thead);
+        const tbody = document.createElement('tbody');
+        aufgabe.zeilen.forEach(z => {
+          const tr = document.createElement('tr');
+          const tdL = document.createElement('td'); tdL.textContent = z.label; tdL.style.fontWeight = '700'; tdL.style.textAlign = 'left'; tr.appendChild(tdL);
+          z.werte.forEach(w => { const td = document.createElement('td'); td.textContent = w; tr.appendChild(td); });
+          tbody.appendChild(tr);
+        });
+        table.appendChild(tbody);
+      } else {
+        table.classList.add('hochformat');
+        const thead = document.createElement('thead');
+        const trHead = document.createElement('tr');
+        aufgabe.spalten.forEach(s => { const th = document.createElement('th'); th.textContent = s; trHead.appendChild(th); });
+        thead.appendChild(trHead); table.appendChild(thead);
+        const tbody = document.createElement('tbody');
+        aufgabe.zeilen.forEach(z => {
+          const tr = document.createElement('tr');
+          z.forEach(w => { const td = document.createElement('td'); td.textContent = w; tr.appendChild(td); });
+          tbody.appendChild(tr);
+        });
+        table.appendChild(tbody);
+      }
+      wrapper.appendChild(table);
+    }
+
+    // Freitext-Eingabe statt Buttons
+    const antworten = document.getElementById('antworten');
+    antworten.innerHTML = '';
+    const inputWrap = document.createElement('div');
+    inputWrap.style.cssText = 'display:flex;gap:8px;margin-top:8px;';
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.id = 'freitext-input';
+    input.placeholder = 'Begriff eingeben…';
+    input.style.cssText = 'flex:1;padding:10px 14px;border:2px solid #ccc;border-radius:8px;font-size:1rem;outline:none;';
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') freitextPruefen(aufgabe); });
+    const btn = document.createElement('button');
+    btn.className = 'test-starten-btn';
+    btn.textContent = 'Prüfen';
+    btn.onclick = () => freitextPruefen(aufgabe);
+    inputWrap.appendChild(input);
+    inputWrap.appendChild(btn);
+    if (aufgabe.tipp) {
+      const tippBtn = document.createElement('button');
+      tippBtn.className = 'test-starten-btn';
+      tippBtn.textContent = '💡 Tipp';
+      tippBtn.style.cssText = 'background:#f5e642;color:#333;border-color:#c8b800;';
+      let tippAngezeigt = false;
+      tippBtn.onclick = () => {
+        if (!tippAngezeigt) {
+          input.placeholder = 'Beginnt mit „' + aufgabe.tipp + '"…';
+          tippAngezeigt = true;
+          tippBtn.textContent = '💡 „' + aufgabe.tipp + '"';
+        }
+      };
+      inputWrap.appendChild(tippBtn);
+    }
+    antworten.appendChild(inputWrap);
+    setTimeout(() => input.focus(), 100);
+
+    document.getElementById('feedback').className = 'feedback';
+    document.getElementById('weiter-btn').className = 'weiter-btn';
+    return;
+  }
+
+  // MC-Format: SVG rendern, dann Buttons
+  if (aufgabe.format === 'mc' || aufgabe.format === 'mc_erklaerung') {
+    if (aufgabe.tabelleHtml) {
+      const tbl = document.createElement('div');
+      tbl.style.cssText = 'margin-bottom:8px;overflow-x:auto;';
+      tbl.innerHTML = aufgabe.tabelleHtml;
+      wrapper.appendChild(tbl);
+    }
+    if (aufgabe.svgLinks && aufgabe.svgRechts) {
+      const div = document.createElement('div');
+      div.style.cssText = 'display:flex;gap:12px;justify-content:center;margin-bottom:8px;flex-wrap:wrap;';
+      div.innerHTML = aufgabe.svgLinks + aufgabe.svgRechts;
+      wrapper.appendChild(div);
+    } else if (aufgabe.svg) {
+      const div = document.createElement('div');
+      div.style.cssText = 'margin-bottom:8px;';
+      div.innerHTML = aufgabe.svg;
+      wrapper.appendChild(div);
+    }
+    const antworten = document.getElementById('antworten');
+    antworten.innerHTML = '';
+    aufgabe.optionen.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'antwort-btn';
+      btn.innerHTML = opt;
+      btn.onclick = () => antwortenClick(i, aufgabe);
+      antworten.appendChild(btn);
+    });
+    document.getElementById('feedback').className = 'feedback';
+    document.getElementById('weiter-btn').className = 'weiter-btn';
+    return;
+  }
+
+  const table = document.createElement('table');
+
+  if (aufgabe.format === 'quer') {
+    const thead = document.createElement('thead');
+    const trHead = document.createElement('tr');
+    aufgabe.kopfzeile.forEach(k => {
+      const th = document.createElement('th');
+      th.textContent = k;
+      trHead.appendChild(th);
+    });
+    thead.appendChild(trHead);
+    table.appendChild(thead);
+    const tbody = document.createElement('tbody');
+    aufgabe.zeilen.forEach(z => {
+      const tr = document.createElement('tr');
+      const tdLabel = document.createElement('td');
+      tdLabel.textContent = z.label;
+      tdLabel.style.fontWeight = '700';
+      tdLabel.style.textAlign = 'left';
+      tr.appendChild(tdLabel);
+      z.werte.forEach(w => {
+        const td = document.createElement('td');
+        td.textContent = w;
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+  } else {
+    table.classList.add('hochformat');
+    const thead = document.createElement('thead');
+    const trHead = document.createElement('tr');
+    aufgabe.spalten.forEach(s => {
+      const th = document.createElement('th');
+      th.textContent = s;
+      trHead.appendChild(th);
+    });
+    thead.appendChild(trHead);
+    table.appendChild(thead);
+    const tbody = document.createElement('tbody');
+    aufgabe.zeilen.forEach(z => {
+      const tr = document.createElement('tr');
+      z.forEach(w => {
+        const td = document.createElement('td');
+        td.textContent = w;
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+  }
+
+  wrapper.appendChild(table);
+
+  const antworten = document.getElementById('antworten');
+  antworten.innerHTML = '';
+  aufgabe.optionen.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'antwort-btn';
+    btn.textContent = opt;
+    btn.onclick = () => antwortenClick(i, aufgabe);
+    antworten.appendChild(btn);
+  });
+
+  document.getElementById('feedback').className = 'feedback';
+  document.getElementById('weiter-btn').className = 'weiter-btn';
+}
+
+function antwortenClick(index, aufgabe) {
+  if (geantwortet) return;
+  geantwortet = true;
+
+  const buttons = document.querySelectorAll('.antwort-btn');
+  buttons.forEach(b => b.disabled = true);
+
+  const feedback = document.getElementById('feedback');
+  const weiter = document.getElementById('weiter-btn');
+
+  if (index === aufgabe.richtig) {
+    richtigCount++;
+    buttons[index].classList.add('richtig');
+    feedback.textContent = '✓ Richtig! ' + aufgabe.erklaerung;
+    feedback.className = 'feedback show ok';
+  } else {
+    buttons[index].classList.add('falsch');
+    buttons[aufgabe.richtig].classList.add('richtig');
+    feedback.textContent = '✗ Leider falsch. ' + aufgabe.erklaerung;
+    feedback.className = 'feedback show nok';
+  }
+
+  weiter.className = 'weiter-btn show';
+  weiter.textContent = aktuellerIndex === aktuelleRunde.length - 1 ? 'Ergebnis ansehen →' : 'Weiter →';
+}
+
+function parseZahl(str) {
+  // Komma als Dezimaltrenner akzeptieren
+  return parseFloat(str.trim().replace(',', '.'));
+}
+
+function pruefeAblesen(aufgabe) {
+  if (geantwortet) return;
+  // Alle Felder ausgefüllt?
+  const alle = aufgabe.punkte.every((p, i) => {
+    const key = p.name || i;
+    return document.getElementById(`ablese_${key}_x`)?.value.trim() !== '' &&
+           document.getElementById(`ablese_${key}_y`)?.value.trim() !== '';
+  });
+  if (!alle) {
+    document.getElementById('feedback').textContent = 'Bitte alle Felder ausfüllen.';
+    document.getElementById('feedback').className = 'feedback show nok';
+    return;
+  }
+  geantwortet = true;
+
+  let alleRichtig = true;
+  aufgabe.punkte.forEach((p, i) => {
+    const key = p.name || i;
+    const xEing = parseZahl(document.getElementById(`ablese_${key}_x`).value);
+    const yEing = parseZahl(document.getElementById(`ablese_${key}_y`).value);
+    const xOk = Math.abs(xEing - p.x) < 0.01;
+    const yOk = Math.abs(yEing - p.y) < 0.01;
+    const xInp = document.getElementById(`ablese_${key}_x`);
+    const yInp = document.getElementById(`ablese_${key}_y`);
+    xInp.style.borderColor = xOk ? 'var(--green)' : 'var(--red)';
+    yInp.style.borderColor = yOk ? 'var(--green)' : 'var(--red)';
+    xInp.disabled = true;
+    yInp.disabled = true;
+    if (!xOk || !yOk) alleRichtig = false;
+  });
+
+  const feedback = document.getElementById('feedback');
+  const weiter = document.getElementById('weiter-btn');
+  if (alleRichtig) {
+    richtigCount++;
+    feedback.textContent = '✓ Alle Koordinaten stimmen!';
+    feedback.className = 'feedback show ok';
+  } else {
+    const korrekt = aufgabe.punkte.map(p => `${p.name ? p.name+': ' : ''}(${p.x}|${p.y})`).join(', ');
+    feedback.textContent = `✗ Nicht ganz. Die richtigen Koordinaten: ${korrekt}`;
+    feedback.className = 'feedback show nok';
+  }
+  weiter.className = 'weiter-btn show';
+  weiter.textContent = aktuellerIndex === aktuelleRunde.length - 1 ? 'Ergebnis ansehen →' : 'Weiter →';
+}
+
+function pruefeCheckliste(aufgabe) {
+  const alle = aufgabe.items.every((_, i) => document.getElementById('check_' + i)?.checked);
+  const feedback = document.getElementById('feedback');
+  const weiter = document.getElementById('weiter-btn');
+  if (alle) {
+    richtigCount++;
+    feedback.textContent = '✓ Alle Punkte abgehakt – gut gemacht!';
+    feedback.className = 'feedback show ok';
+    weiter.className = 'weiter-btn show';
+    weiter.textContent = 'Ergebnis ansehen →';
+    // Checkboxen sperren
+    aufgabe.items.forEach((_, i) => {
+      const cb = document.getElementById('check_' + i);
+      if (cb) cb.disabled = true;
+    });
+  } else {
+    feedback.className = 'feedback';
+    weiter.className = 'weiter-btn';
+  }
+}
+
+function freitextPruefen(aufgabe) {
+  if (geantwortet) return;
+  const input = document.getElementById('freitext-input');
+  if (!input) return;
+  const antwort = input.value.trim().toLowerCase();
+  if (!antwort) { input.style.borderColor = 'var(--red)'; return; }
+  geantwortet = true;
+  input.disabled = true;
+  document.querySelector('#antworten button').disabled = true;
+
+  const feedback = document.getElementById('feedback');
+  const weiter = document.getElementById('weiter-btn');
+  const richtigeVarianten = aufgabe.richtig.map(r => r.toLowerCase());
+  const korrekt = richtigeVarianten.some(r => antwort === r || antwort === r.replace(/\s+/g, ''));
+
+  if (korrekt) {
+    richtigCount++;
+    input.style.borderColor = 'var(--green)';
+    feedback.textContent = '✓ Richtig! ' + aufgabe.erklaerung;
+    feedback.className = 'feedback show ok';
+  } else {
+    input.style.borderColor = 'var(--red)';
+    feedback.textContent = '✗ Leider falsch. Die richtige Antwort lautet: ' + aufgabe.richtig[0] + '. ' + aufgabe.erklaerung;
+    feedback.className = 'feedback show nok';
+  }
+  weiter.className = 'weiter-btn show';
+  weiter.textContent = aktuellerIndex === aktuelleRunde.length - 1 ? 'Ergebnis ansehen →' : 'Weiter →';
+}
+
+function naechsteFrage() {
+  aktuellerIndex++;
+  if (aktuellerIndex < aktuelleRunde.length) {
+    zeigeFrage();
+  } else {
+    zeigeErgebnis();
+  }
+}
+
+function zeigeErgebnis() {
+  document.getElementById('test-card').style.display = 'none';
+  const card = document.getElementById('ergebnis-card');
+  card.className = 'ergebnis-card show';
+
+  const score = document.getElementById('ergebnis-score');
+  const emoji = document.getElementById('ergebnis-emoji');
+  const titel = document.getElementById('ergebnis-titel');
+  const text = document.getElementById('ergebnis-text');
+  const dlBtn = document.getElementById('download-btn');
+  const dlHinweis = document.getElementById('download-hinweis');
+
+  const maxFragen = aktuelleRunde.length;
+  score.textContent = `${richtigCount} / ${maxFragen}`;
+
+  let neuerStatus = null;
+
+  if (richtigCount === maxFragen) {
+    score.className = 'ergebnis-score gruen';
+    emoji.textContent = '🟢';
+    titel.textContent = 'Kompetenz erreicht!';
+    text.textContent = 'Du hast alle drei Tabellen richtig eingeschätzt. Lade jetzt die Datei herunter und lade sie bei IServ hoch.';
+    neuerStatus = 'gruen';
+    dlBtn.classList.remove('versteckt');
+    dlHinweis.classList.remove('versteckt');
+  } else if (richtigCount === maxFragen - 1) {
+    score.className = 'ergebnis-score gelb';
+    emoji.textContent = '🟡';
+    titel.textContent = 'Fast geschafft!';
+    text.textContent = 'Du hast 2 von 3 richtig. Versuche es nochmal – du bist nah dran!';
+    neuerStatus = 'gelb';
+    dlBtn.classList.remove('versteckt');
+    dlHinweis.classList.remove('versteckt');
+  } else {
+    score.className = 'ergebnis-score rot';
+    emoji.textContent = '🔄';
+    titel.textContent = 'Noch nicht ganz!';
+    text.textContent = 'Das ist okay – lies dir die Erklärungen durch und starte nochmal.';
+    dlBtn.classList.add('versteckt');
+    dlHinweis.classList.add('versteckt');
+  }
+
+  // Versuchszähler hochzählen
+  versuche[aktiveKompetenz] = (versuche[aktiveKompetenz] || 0) + 1;
+
+  // Lernstand aktualisieren (nur verbessern, nie verschlechtern)
+  const alter = lernstand[aktiveKompetenz];
+  if (neuerStatus === 'gruen' || (neuerStatus === 'gelb' && alter !== 'gruen')) {
+    lernstand[aktiveKompetenz] = neuerStatus;
+  }
+  speichern();
+
+  // Aufkleber in Landkarte live aktualisieren
+  if (neuerStatus) {
+    const item = document.getElementById('item-' + aktiveKompetenz);
+    const aufkleber = document.getElementById('aufkleber-' + aktiveKompetenz);
+    if (item && aufkleber) {
+      item.className = 'kompetenz-item ' + (lernstand[aktiveKompetenz] || '');
+      aufkleber.textContent = lernstand[aktiveKompetenz] === 'gruen' ? '🟢' : '🟡';
+    }
+  }
+
+  // Hinweis wenn durch 3 Versuche eine neue Kompetenz freigeschaltet wird
+  if (versuche[aktiveKompetenz] === 3 && !neuerStatus) {
+    text.textContent += ' Eine neue Kompetenz wurde freigeschaltet – schau auf deine Lernlandkarte!';
+  }
+}
+
+function ergebnisDownload() {
+  const datum = new Date().toLocaleString('de-DE');
+  const status = lernstand[aktiveKompetenz] || 'kein Aufkleber';
+  const kNr = kompetenzen.findIndex(k => k.id === aktiveKompetenz) + 1;
+  const kText = kompetenzen.find(k => k.id === aktiveKompetenz).text;
+
+  const daten = {
+    name: schuelerName,
+    datum: datum,
+    kompetenz_nr: kNr,
+    schlagwort: kompetenzen.find(k => k.id === aktiveKompetenz).schlagwort,
+    kompetenz: kText,
+    ergebnis: `${richtigCount} von 3`,
+    aufkleber: status === 'gruen' ? '🟢 Grün' : status === 'gelb' ? '🟡 Gelb' : 'Kein Aufkleber'
+  };
+
+  const blob = new Blob([JSON.stringify(daten, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `Zuordnungen_K${kNr}_${schuelerName.replace(/\s+/g, '_')}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function nochmal() {
+  document.getElementById('ergebnis-card').className = 'ergebnis-card';
+  document.getElementById('test-card').style.display = 'block';
+  aktuelleRunde = zufaelligeAuswahl(aufgabenPool[aktiveKompetenz]);
+  aktuellerIndex = 0;
+  richtigCount = 0;
+  zeigeFrage();
+}
+
+function zurueckZurLandkarte() {
+  document.getElementById('test-container').classList.add('versteckt');
+  document.getElementById('landkarte').classList.remove('versteckt');
+  document.getElementById('abgabe-hinweis').classList.add('show');
+  baueLandkarte();
+}
+
+// ========== INIT ==========
+laden();
+if (schuelerName) {
+  zeigeHauptansicht();
+}
+</script>
+</body>
+</html>
