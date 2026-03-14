@@ -1345,7 +1345,9 @@ async function testStarten(kompetenzId) {
     }
   }
   const pool = aufgabenPool[kompetenzId];
+  console.log('Pool:', JSON.stringify(pool?.slice(0,1)));
   aktuelleRunde = zufaelligeAuswahl(pool);
+  console.log('Runde:', JSON.stringify(aktuelleRunde?.slice(0,1)));
   aktuellerIndex = 0;
   richtigCount = 0;
 
