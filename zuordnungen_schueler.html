@@ -1255,7 +1255,7 @@ function baueLandkarte() {
 
   kompetenzen.forEach((k, index) => {
     const status = lernstand[k.id] || null;
-    const hatTest = !!aufgabenPool[k.id];
+    const hatTest = aufgabenPool[k.id] !== undefined;
     const offen = index < maxOffen;
 
     const item = document.createElement('div');
