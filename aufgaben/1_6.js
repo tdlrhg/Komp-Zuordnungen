@@ -1,113 +1,177 @@
 var aufgabenPool_1_6 = [
   {
     format: 'mc',
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 170" width="230" height="170" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
-  <line x1="30" y1="145" x2="195" y2="145" stroke="#333" stroke-width="1.5"/>
-  <line x1="30" y1="145" x2="30" y2="15" stroke="#333" stroke-width="1.5"/>
-  <polygon points="195,140 202,145 195,150" fill="#333"/>
-  <polygon points="25,15 30,8 35,15" fill="#333"/>
-  <text x="205" y="149" font-size="10" fill="#333" font-family="Arial">Anzahl</text>
-  <text x="2" y="12" font-size="10" fill="#333" font-family="Arial">Preis</text>
-  <polyline points="30,145 60,125 90,105 120,85 150,65 180,45" fill="none" stroke="#3b5bdb" stroke-width="2"/>
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 180" width="300" height="180" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+  <rect x="40" y="50" width="220" height="100" rx="18" fill="#f0f0f0" stroke="#333" stroke-width="2"/>
+  <polygon points="65,12 95,12 80,50" fill="none" stroke="#333" stroke-width="2" stroke-linejoin="round"/>
+  <line x1="65" y1="12" x2="95" y2="12" stroke="#333" stroke-width="2"/>
+  <rect x="75" y="48" width="10" height="5" fill="#f0f0f0" stroke="#333" stroke-width="1"/>
+  <rect x="260" y="118" width="32" height="14" rx="3" fill="#bbb" stroke="#888" stroke-width="1.5"/>
+  <rect x="277" y="128" width="14" height="24" rx="3" fill="#bbb" stroke="#888" stroke-width="1.5"/>
+  <rect x="275" y="118" width="16" height="16" rx="2" fill="#bbb" stroke="#888" stroke-width="1.5"/>
+  <text x="80" y="7" text-anchor="middle" font-size="13" font-weight="bold" fill="#3b5bdb" font-family="Arial">2</text>
+  <text x="80" y="22" text-anchor="middle" font-size="11" fill="#3b5bdb" font-family="Arial">↓</text>
+  <text x="150" y="95" text-anchor="middle" font-size="11" fill="#888" font-family="Arial">Rechenregel: ?</text>
+  <text x="64" y="75" text-anchor="middle" font-size="11" fill="#3b5bdb" font-family="Arial">2→6</text>
+  <text x="64" y="92" text-anchor="middle" font-size="11" fill="#e67700" font-family="Arial">5→15</text>
+  <text x="64" y="109" text-anchor="middle" font-size="11" fill="#2f9e44" font-family="Arial">8→24</text>
+  <text x="284" y="162" text-anchor="middle" font-size="13" font-weight="bold" fill="#333" font-family="Arial">?</text>
 </svg>`,
-    frage: 'Welche Situation passt zu diesem Diagramm?',
-    optionen: [
-      'Im Supermarkt kostet jedes Brötchen gleich viel.',
-      'Der Preis eines Handys sinkt, je mehr Geräte verkauft werden.',
-      'Ein Schwimmbad kostet 3 Euro Eintritt, jede weitere Stunde kostet 2 Euro extra.',
-      'Beim Flohmarkt schwanken die Preise je nach Angebot.',
-      'Ein Händler kauft erst ab einer Mindestbestellmenge von 10 Stück ein.'
-    ],
+    frage: 'Welche Rechenregel wendet die Maschine an?',
+    optionen: ['· 3', '+ 4', '· 2 + 2', '· 3 + 1'],
     richtig: 0,
-    erklaerung: 'Der Graph steigt gleichmäßig durch den Ursprung – das passt zu einer Situation, bei der jedes Stück gleich viel kostet und der Preis proportional zur Anzahl steigt.'
+    erklaerung: '2·3=6, 5·3=15, 8·3=24 – die Maschine multipliziert mit 3.'
   },
   {
     format: 'mc',
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 170" width="230" height="170" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
-  <line x1="30" y1="145" x2="195" y2="145" stroke="#333" stroke-width="1.5"/>
-  <line x1="30" y1="145" x2="30" y2="15" stroke="#333" stroke-width="1.5"/>
-  <polygon points="195,140 202,145 195,150" fill="#333"/>
-  <polygon points="25,15 30,8 35,15" fill="#333"/>
-  <text x="205" y="149" font-size="10" fill="#333" font-family="Arial">Zeit</text>
-  <text x="2" y="12" font-size="10" fill="#333" font-family="Arial">Temperatur</text>
-  <polyline points="30,120 55,95 80,55 105,90 130,45 155,75 180,50" fill="none" stroke="#3b5bdb" stroke-width="2"/>
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 180" width="300" height="180" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+  <rect x="40" y="50" width="220" height="100" rx="18" fill="#f0f0f0" stroke="#333" stroke-width="2"/>
+  <polygon points="65,12 95,12 80,50" fill="none" stroke="#333" stroke-width="2" stroke-linejoin="round"/>
+  <line x1="65" y1="12" x2="95" y2="12" stroke="#333" stroke-width="2"/>
+  <rect x="75" y="48" width="10" height="5" fill="#f0f0f0" stroke="#333" stroke-width="1"/>
+  <rect x="260" y="118" width="32" height="14" rx="3" fill="#bbb" stroke="#888" stroke-width="1.5"/>
+  <rect x="277" y="128" width="14" height="24" rx="3" fill="#bbb" stroke="#888" stroke-width="1.5"/>
+  <rect x="275" y="118" width="16" height="16" rx="2" fill="#bbb" stroke="#888" stroke-width="1.5"/>
+  <text x="150" y="95" text-anchor="middle" font-size="11" fill="#888" font-family="Arial">Rechenregel: ?</text>
+  <text x="64" y="75" text-anchor="middle" font-size="11" fill="#3b5bdb" font-family="Arial">3→8</text>
+  <text x="64" y="92" text-anchor="middle" font-size="11" fill="#e67700" font-family="Arial">6→11</text>
+  <text x="64" y="109" text-anchor="middle" font-size="11" fill="#2f9e44" font-family="Arial">10→15</text>
 </svg>`,
-    frage: 'Welche Situation passt zu diesem Diagramm?',
-    optionen: [
-      'Die Außentemperatur wird über eine Woche gemessen.',
-      'Ein Ofen wird aufgeheizt.',
-      'Wasser kühlt nach dem Kochen ab.',
-      'Ein Mensch läuft und wird dabei wärmer.',
-      'Die Körpertemperatur eines gesunden Menschen wird gemessen.'
-    ],
+    frage: 'Welche Rechenregel wendet die Maschine an?',
+    optionen: ['+ 5', '· 2', '+ 4', '· 2 + 2'],
     richtig: 0,
-    erklaerung: 'Der Graph schwankt unregelmäßig – das passt zu einer Außentemperatur, die über mehrere Tage mal steigt, mal sinkt.'
+    erklaerung: '3+5=8, 6+5=11, 10+5=15 – die Maschine addiert 5.'
   },
   {
     format: 'mc',
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 170" width="230" height="170" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
-  <line x1="30" y1="145" x2="195" y2="145" stroke="#333" stroke-width="1.5"/>
-  <line x1="30" y1="145" x2="30" y2="15" stroke="#333" stroke-width="1.5"/>
-  <polygon points="195,140 202,145 195,150" fill="#333"/>
-  <polygon points="25,15 30,8 35,15" fill="#333"/>
-  <text x="205" y="149" font-size="10" fill="#333" font-family="Arial">Anzahl</text>
-  <text x="2" y="12" font-size="10" fill="#333" font-family="Arial">Gewicht</text>
-  <polyline points="30,105 60,93 90,81 120,69 150,57 180,45" fill="none" stroke="#3b5bdb" stroke-width="2"/>
-  <circle cx="30" cy="105" r="3" fill="#3b5bdb"/>
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 180" width="300" height="180" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+  <rect x="40" y="50" width="220" height="100" rx="18" fill="#f0f0f0" stroke="#333" stroke-width="2"/>
+  <polygon points="65,12 95,12 80,50" fill="none" stroke="#333" stroke-width="2" stroke-linejoin="round"/>
+  <line x1="65" y1="12" x2="95" y2="12" stroke="#333" stroke-width="2"/>
+  <rect x="75" y="48" width="10" height="5" fill="#f0f0f0" stroke="#333" stroke-width="1"/>
+  <rect x="260" y="118" width="32" height="14" rx="3" fill="#bbb" stroke="#888" stroke-width="1.5"/>
+  <rect x="277" y="128" width="14" height="24" rx="3" fill="#bbb" stroke="#888" stroke-width="1.5"/>
+  <rect x="275" y="118" width="16" height="16" rx="2" fill="#bbb" stroke="#888" stroke-width="1.5"/>
+  <text x="80" y="7" text-anchor="middle" font-size="13" font-weight="bold" fill="#3b5bdb" font-family="Arial">3</text>
+  <text x="80" y="22" text-anchor="middle" font-size="11" fill="#3b5bdb" font-family="Arial">↓</text>
+  <text x="150" y="88" text-anchor="middle" font-size="16" font-weight="bold" fill="#333" font-family="Arial">· 4</text>
+  <text x="64" y="75" text-anchor="middle" font-size="11" fill="#3b5bdb" font-family="Arial">5→20</text>
+  <text x="64" y="92" text-anchor="middle" font-size="11" fill="#e67700" font-family="Arial">9→36</text>
+  <text x="284" y="162" text-anchor="middle" font-size="13" font-weight="bold" fill="#2f9e44" font-family="Arial">?</text>
 </svg>`,
-    frage: 'Welche Situation passt zu diesem Diagramm?',
-    optionen: [
-      'Auf einem Erdbeerfeld kostet das Körbchen 1 Euro und jedes Kilo Erdbeeren 5,60 Euro.',
-      'Äpfel werden gewogen: Je mehr Äpfel, desto schwerer.',
-      'Je mehr Bücher man kauft, desto mehr zahlt man.',
-      'Eine Waage zeigt das Gewicht von Mehlportionen.',
-      'Beim Abnehmen verliert man pro Woche unterschiedlich viel.'
-    ],
+    frage: 'Was gibt die Maschine aus, wenn 7 eingegeben wird?',
+    optionen: ['28', '11', '21', '47'],
     richtig: 0,
-    erklaerung: 'Der Graph steigt gleichmäßig, beginnt aber nicht im Ursprung – das passt zu einer Situation mit einer Grundgebühr, zu der gleichmäßig mehr dazukommt.'
+    erklaerung: '7 · 4 = 28.'
   },
   {
     format: 'mc',
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 170" width="230" height="170" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
-  <line x1="30" y1="145" x2="195" y2="145" stroke="#333" stroke-width="1.5"/>
-  <line x1="30" y1="145" x2="30" y2="15" stroke="#333" stroke-width="1.5"/>
-  <polygon points="195,140 202,145 195,150" fill="#333"/>
-  <polygon points="25,15 30,8 35,15" fill="#333"/>
-  <text x="205" y="149" font-size="10" fill="#333" font-family="Arial">Preis</text>
-  <text x="2" y="12" font-size="10" fill="#333" font-family="Arial">Anzahl</text>
-  <polyline points="30,25 60,45 90,70 120,95 150,115 180,135" fill="none" stroke="#3b5bdb" stroke-width="2"/>
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 180" width="300" height="180" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+  <rect x="40" y="50" width="220" height="100" rx="18" fill="#f0f0f0" stroke="#333" stroke-width="2"/>
+  <polygon points="65,12 95,12 80,50" fill="none" stroke="#333" stroke-width="2" stroke-linejoin="round"/>
+  <line x1="65" y1="12" x2="95" y2="12" stroke="#333" stroke-width="2"/>
+  <rect x="75" y="48" width="10" height="5" fill="#f0f0f0" stroke="#333" stroke-width="1"/>
+  <rect x="260" y="118" width="32" height="14" rx="3" fill="#bbb" stroke="#888" stroke-width="1.5"/>
+  <rect x="277" y="128" width="14" height="24" rx="3" fill="#bbb" stroke="#888" stroke-width="1.5"/>
+  <rect x="275" y="118" width="16" height="16" rx="2" fill="#bbb" stroke="#888" stroke-width="1.5"/>
+  <text x="80" y="7" text-anchor="middle" font-size="13" font-weight="bold" fill="#3b5bdb" font-family="Arial">13</text>
+  <text x="80" y="22" text-anchor="middle" font-size="11" fill="#3b5bdb" font-family="Arial">↓</text>
+  <text x="150" y="88" text-anchor="middle" font-size="16" font-weight="bold" fill="#333" font-family="Arial">+ 6</text>
+  <text x="64" y="75" text-anchor="middle" font-size="11" fill="#3b5bdb" font-family="Arial">4→10</text>
+  <text x="64" y="92" text-anchor="middle" font-size="11" fill="#e67700" font-family="Arial">9→15</text>
+  <text x="284" y="162" text-anchor="middle" font-size="13" font-weight="bold" fill="#2f9e44" font-family="Arial">?</text>
 </svg>`,
-    frage: 'Welche Situation passt zu diesem Diagramm?',
-    optionen: [
-      'Je teurer ein Produkt ist, desto weniger Kunden kaufen es.',
-      'Ein Händler senkt den Preis, wenn er zu viel Ware hat.',
-      'Je höher der Preis, desto mehr Gewinn macht der Händler.',
-      'Der Preis eines Produkts bleibt konstant, egal wie viele gekauft werden.',
-      'Je mehr von einem Produkt produziert wird, desto günstiger wird es.'
-    ],
+    frage: 'Was gibt die Maschine aus, wenn 13 eingegeben wird?',
+    optionen: ['19', '78', '7', '20'],
     richtig: 0,
-    erklaerung: 'Der Graph sinkt – bei steigendem Preis auf der x-Achse sinkt die Anzahl der Käufer auf der y-Achse.'
+    erklaerung: '13 + 6 = 19.'
   },
   {
     format: 'mc',
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 170" width="230" height="170" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
-  <line x1="30" y1="145" x2="195" y2="145" stroke="#333" stroke-width="1.5"/>
-  <line x1="30" y1="145" x2="30" y2="15" stroke="#333" stroke-width="1.5"/>
-  <polygon points="195,140 202,145 195,150" fill="#333"/>
-  <polygon points="25,15 30,8 35,15" fill="#333"/>
-  <text x="205" y="149" font-size="10" fill="#333" font-family="Arial">Zeit</text>
-  <text x="2" y="12" font-size="10" fill="#333" font-family="Arial">Anzahl</text>
-  <polyline points="30,125 60,125 90,125 115,120 135,105 155,80 175,45" fill="none" stroke="#3b5bdb" stroke-width="2"/>
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 180" width="300" height="180" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+  <rect x="40" y="50" width="220" height="100" rx="18" fill="#f0f0f0" stroke="#333" stroke-width="2"/>
+  <polygon points="65,12 95,12 80,50" fill="none" stroke="#333" stroke-width="2" stroke-linejoin="round"/>
+  <line x1="65" y1="12" x2="95" y2="12" stroke="#333" stroke-width="2"/>
+  <rect x="75" y="48" width="10" height="5" fill="#f0f0f0" stroke="#333" stroke-width="1"/>
+  <rect x="260" y="118" width="32" height="14" rx="3" fill="#bbb" stroke="#888" stroke-width="1.5"/>
+  <rect x="277" y="128" width="14" height="24" rx="3" fill="#bbb" stroke="#888" stroke-width="1.5"/>
+  <rect x="275" y="118" width="16" height="16" rx="2" fill="#bbb" stroke="#888" stroke-width="1.5"/>
+  <text x="80" y="7" text-anchor="middle" font-size="13" font-weight="bold" fill="#3b5bdb" font-family="Arial">?</text>
+  <text x="80" y="22" text-anchor="middle" font-size="11" fill="#3b5bdb" font-family="Arial">↓</text>
+  <text x="150" y="88" text-anchor="middle" font-size="16" font-weight="bold" fill="#333" font-family="Arial">· 5</text>
+  <text x="64" y="75" text-anchor="middle" font-size="11" fill="#3b5bdb" font-family="Arial">2→10</text>
+  <text x="64" y="92" text-anchor="middle" font-size="11" fill="#e67700" font-family="Arial">5→25</text>
+  <text x="284" y="162" text-anchor="middle" font-size="13" font-weight="bold" fill="#2f9e44" font-family="Arial">35</text>
 </svg>`,
-    frage: 'Welche Situation passt zu diesem Diagramm?',
-    optionen: [
-      'Eine Pflanze wächst zunächst kaum, dann immer schneller.',
-      'Ein Baum wächst von Anfang an.',
-      'Die Anzahl der Blätter an einem Baum bleibt über Jahre gleich.',
-      'Im Winter verliert ein Baum seine Blätter.',
-      'Die Anzahl der Früchte hängt von der Jahreszeit ab.'
-    ],
+    frage: 'Welche Zahl wurde eingegeben, wenn 35 herauskommt?',
+    optionen: ['7', '30', '175', '6'],
     richtig: 0,
-    erklaerung: 'Der Graph bleibt zunächst flach und steigt dann immer steiler – das passt zu einer Pflanze, die erst langsam und dann immer schneller wächst.'
+    erklaerung: '35 : 5 = 7. Man dreht die Rechenregel um.'
+  },
+  {
+    format: 'mc',
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 180" width="300" height="180" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+  <rect x="40" y="50" width="220" height="100" rx="18" fill="#f0f0f0" stroke="#333" stroke-width="2"/>
+  <polygon points="65,12 95,12 80,50" fill="none" stroke="#333" stroke-width="2" stroke-linejoin="round"/>
+  <line x1="65" y1="12" x2="95" y2="12" stroke="#333" stroke-width="2"/>
+  <rect x="75" y="48" width="10" height="5" fill="#f0f0f0" stroke="#333" stroke-width="1"/>
+  <rect x="260" y="118" width="32" height="14" rx="3" fill="#bbb" stroke="#888" stroke-width="1.5"/>
+  <rect x="277" y="128" width="14" height="24" rx="3" fill="#bbb" stroke="#888" stroke-width="1.5"/>
+  <rect x="275" y="118" width="16" height="16" rx="2" fill="#bbb" stroke="#888" stroke-width="1.5"/>
+  <text x="80" y="7" text-anchor="middle" font-size="13" font-weight="bold" fill="#3b5bdb" font-family="Arial">?</text>
+  <text x="80" y="22" text-anchor="middle" font-size="11" fill="#3b5bdb" font-family="Arial">↓</text>
+  <text x="150" y="88" text-anchor="middle" font-size="16" font-weight="bold" fill="#333" font-family="Arial">– 3</text>
+  <text x="64" y="75" text-anchor="middle" font-size="11" fill="#3b5bdb" font-family="Arial">5→2</text>
+  <text x="64" y="92" text-anchor="middle" font-size="11" fill="#e67700" font-family="Arial">9→6</text>
+  <text x="284" y="162" text-anchor="middle" font-size="13" font-weight="bold" fill="#2f9e44" font-family="Arial">4</text>
+</svg>`,
+    frage: 'Welche Zahl wurde eingegeben, wenn 4 herauskommt?',
+    optionen: ['7', '1', '12', '4'],
+    richtig: 0,
+    erklaerung: '4 + 3 = 7. Man dreht die Rechenregel um: statt –3 rechnet man +3.'
+  },
+  {
+    format: 'mc',
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 180" width="300" height="180" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+  <rect x="40" y="50" width="220" height="100" rx="18" fill="#f0f0f0" stroke="#333" stroke-width="2"/>
+  <polygon points="65,12 95,12 80,50" fill="none" stroke="#333" stroke-width="2" stroke-linejoin="round"/>
+  <line x1="65" y1="12" x2="95" y2="12" stroke="#333" stroke-width="2"/>
+  <rect x="75" y="48" width="10" height="5" fill="#f0f0f0" stroke="#333" stroke-width="1"/>
+  <rect x="260" y="118" width="32" height="14" rx="3" fill="#bbb" stroke="#888" stroke-width="1.5"/>
+  <rect x="277" y="128" width="14" height="24" rx="3" fill="#bbb" stroke="#888" stroke-width="1.5"/>
+  <rect x="275" y="118" width="16" height="16" rx="2" fill="#bbb" stroke="#888" stroke-width="1.5"/>
+  <text x="80" y="7" text-anchor="middle" font-size="13" font-weight="bold" fill="#3b5bdb" font-family="Arial">5</text>
+  <text x="80" y="22" text-anchor="middle" font-size="11" fill="#3b5bdb" font-family="Arial">↓</text>
+  <text x="150" y="88" text-anchor="middle" font-size="16" font-weight="bold" fill="#333" font-family="Arial">· 3</text>
+  <text x="284" y="162" text-anchor="middle" font-size="13" font-weight="bold" fill="#2f9e44" font-family="Arial">15</text>
+  <rect x="58" y="8" width="44" height="20" rx="4" fill="none" stroke="#3b5bdb" stroke-width="2" stroke-dasharray="4,2"/>
+  <text x="80" y="4" text-anchor="middle" font-size="9" fill="#3b5bdb" font-family="Arial">▼ hier</text>
+</svg>`,
+    frage: 'Wie nennt man den Wert, der oben in die Maschine eingegeben wird?',
+    optionen: ['Ausgangsgröße', 'zugeordnete Größe', 'Rechenregel', 'Ausgabewert'],
+    richtig: 0,
+    erklaerung: 'Der eingegeben Wert ist die Ausgangsgröße – von ihr hängt das Ergebnis ab.'
+  },
+  {
+    format: 'mc',
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 180" width="300" height="180" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+  <rect x="40" y="50" width="220" height="100" rx="18" fill="#f0f0f0" stroke="#333" stroke-width="2"/>
+  <polygon points="65,12 95,12 80,50" fill="none" stroke="#333" stroke-width="2" stroke-linejoin="round"/>
+  <line x1="65" y1="12" x2="95" y2="12" stroke="#333" stroke-width="2"/>
+  <rect x="75" y="48" width="10" height="5" fill="#f0f0f0" stroke="#333" stroke-width="1"/>
+  <rect x="260" y="118" width="32" height="14" rx="3" fill="#bbb" stroke="#888" stroke-width="1.5"/>
+  <rect x="277" y="128" width="14" height="24" rx="3" fill="#bbb" stroke="#888" stroke-width="1.5"/>
+  <rect x="275" y="118" width="16" height="16" rx="2" fill="#bbb" stroke="#888" stroke-width="1.5"/>
+  <text x="80" y="7" text-anchor="middle" font-size="13" font-weight="bold" fill="#3b5bdb" font-family="Arial">5</text>
+  <text x="80" y="22" text-anchor="middle" font-size="11" fill="#3b5bdb" font-family="Arial">↓</text>
+  <text x="150" y="88" text-anchor="middle" font-size="16" font-weight="bold" fill="#333" font-family="Arial">· 3</text>
+  <text x="284" y="162" text-anchor="middle" font-size="13" font-weight="bold" fill="#2f9e44" font-family="Arial">15</text>
+  <rect x="268" y="148" width="36" height="20" rx="4" fill="none" stroke="#2f9e44" stroke-width="2" stroke-dasharray="4,2"/>
+  <text x="286" y="144" text-anchor="middle" font-size="9" fill="#2f9e44" font-family="Arial">▼ hier</text>
+</svg>`,
+    frage: 'Wie nennt man den Wert, der unten aus der Maschine herauskommt?',
+    optionen: ['zugeordnete Größe', 'Ausgangsgröße', 'Proportionalitätsfaktor', 'Rechenregel'],
+    richtig: 0,
+    erklaerung: 'Der ausgegebene Wert ist die zugeordnete Größe – er ergibt sich aus der Ausgangsgröße.'
   }
 ];
