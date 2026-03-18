@@ -2,6 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/png" href="FavIcon7.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mathe 7 – Zuordnungen</title>
 <style>
@@ -10,8 +11,8 @@
   :root {
     --bg: #f0f4ff;
     --card: #ffffff;
-    --primary: #3b5bdb;
-    --primary-light: #748ffc;
+    --primary: #3d6080;
+    --primary-light: #6a9bbf;
     --green: #2f9e44;
     --green-light: #d3f9d8;
     --yellow: #e67700;
@@ -21,7 +22,7 @@
     --text: #1a1a2e;
     --muted: #6c757d;
     --border: #dee2e6;
-    --shadow: 0 4px 24px rgba(59,91,219,0.10);
+    --shadow: 0 4px 24px rgba(61,96,128,0.10);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -137,7 +138,7 @@
     font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 800;
     cursor: pointer; transition: background 0.2s;
   }
-  .weiter-btn:hover { background: #2f4bbf; }
+  .weiter-btn:hover { background: #2d5070; }
   .weiter-btn.show { display: block; }
 
   .ergebnis-card {
@@ -177,9 +178,9 @@
     width: 100%; padding: 16px; background: var(--primary); color: white; border: none;
     border-radius: 14px; font-family: 'Nunito', sans-serif; font-size: 1.1rem;
     font-weight: 800; cursor: pointer; transition: background 0.2s, transform 0.1s;
-    box-shadow: 0 4px 16px rgba(59,91,219,0.25);
+    box-shadow: 0 4px 16px rgba(61,96,128,0.25);
   }
-  .haupt-btn:hover { background: #2f4bbf; transform: translateY(-1px); }
+  .haupt-btn:hover { background: #2d5070; transform: translateY(-1px); }
 
   .abgabe-card {
     max-width: 700px; margin: 0 auto 24px; background: #fff8e1;
@@ -453,7 +454,7 @@ function zeigeFrage() {
     tbl.style.cssText = 'border-collapse:collapse;margin:0 auto;font-size:0.95rem;';
     const thead = document.createElement('thead');
     const trH = document.createElement('tr');
-    ['Punkt','x','y'].forEach(h => { const th = document.createElement('th'); th.textContent = h; th.style.cssText = 'border:1px solid #ccc;padding:6px 12px;background:#f0f4ff;color:#3b5bdb;font-weight:bold;'; trH.appendChild(th); });
+    ['Punkt','x','y'].forEach(h => { const th = document.createElement('th'); th.textContent = h; th.style.cssText = 'border:1px solid #ccc;padding:6px 12px;background:#f0f4ff;color:#3d6080;font-weight:bold;'; trH.appendChild(th); });
     thead.appendChild(trH); tbl.appendChild(thead);
     const tbody = document.createElement('tbody');
     const gemischt = [...aufgabe.punkte].sort(() => Math.random() - 0.5);
@@ -461,7 +462,7 @@ function zeigeFrage() {
       const tr = document.createElement('tr');
       const tdNr = document.createElement('td');
       tdNr.textContent = p.name || (i + 1);
-      tdNr.style.cssText = 'border:1px solid #ccc;padding:6px 12px;text-align:center;font-weight:bold;color:#3b5bdb;';
+      tdNr.style.cssText = 'border:1px solid #ccc;padding:6px 12px;text-align:center;font-weight:bold;color:#3d6080;';
       tr.appendChild(tdNr);
       ['x','y'].forEach(coord => {
         const td = document.createElement('td'); td.style.cssText = 'border:1px solid #ccc;padding:4px 6px;';
@@ -519,7 +520,7 @@ function zeigeFrage() {
     const thead = document.createElement('tr');
     [aufgabe.xLabel, aufgabe.yLabel].forEach(label => {
       const th = document.createElement('th');
-      th.style.cssText = 'border:1px solid #ccc;padding:6px 12px;background:#f0f4ff;color:#3b5bdb;text-align:center;';
+      th.style.cssText = 'border:1px solid #ccc;padding:6px 12px;background:#f0f4ff;color:#3d6080;text-align:center;';
       th.textContent = label; thead.appendChild(th);
     });
     tbl.appendChild(thead);
