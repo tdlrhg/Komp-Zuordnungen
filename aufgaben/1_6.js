@@ -1,7 +1,7 @@
 var aufgabenPool_1_6 = [
   {
     format: 'mc',
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 155" width="300" height="155" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -20 300 175" width="300" height="155" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
   <rect x="40" y="40" width="220" height="80" rx="15" fill="#f0f0f0" stroke="#333" stroke-width="2"/>
   <polygon points="65,8 95,8 80,40" fill="none" stroke="#333" stroke-width="2" stroke-linejoin="round"/>
   <line x1="65" y1="8" x2="95" y2="8" stroke="#333" stroke-width="2"/>
@@ -24,7 +24,7 @@ var aufgabenPool_1_6 = [
   },
   {
     format: 'mc',
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 155" width="300" height="155" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -20 300 175" width="300" height="155" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
   <rect x="40" y="40" width="220" height="80" rx="15" fill="#f0f0f0" stroke="#333" stroke-width="2"/>
   <polygon points="65,8 95,8 80,40" fill="none" stroke="#333" stroke-width="2" stroke-linejoin="round"/>
   <line x1="65" y1="8" x2="95" y2="8" stroke="#333" stroke-width="2"/>
@@ -44,7 +44,7 @@ var aufgabenPool_1_6 = [
   },
   {
     format: 'mc',
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 155" width="300" height="155" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -20 300 175" width="300" height="155" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
   <rect x="40" y="40" width="220" height="80" rx="15" fill="#f0f0f0" stroke="#333" stroke-width="2"/>
   <polygon points="65,8 95,8 80,40" fill="none" stroke="#333" stroke-width="2" stroke-linejoin="round"/>
   <line x1="65" y1="8" x2="95" y2="8" stroke="#333" stroke-width="2"/>
@@ -66,7 +66,7 @@ var aufgabenPool_1_6 = [
   },
   {
     format: 'mc',
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 155" width="300" height="155" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -20 300 175" width="300" height="155" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
   <rect x="40" y="40" width="220" height="80" rx="15" fill="#f0f0f0" stroke="#333" stroke-width="2"/>
   <polygon points="65,8 95,8 80,40" fill="none" stroke="#333" stroke-width="2" stroke-linejoin="round"/>
   <line x1="65" y1="8" x2="95" y2="8" stroke="#333" stroke-width="2"/>
@@ -88,7 +88,7 @@ var aufgabenPool_1_6 = [
   },
   {
     format: 'mc',
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 155" width="300" height="155" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -20 300 175" width="300" height="155" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
   <rect x="40" y="40" width="220" height="80" rx="15" fill="#f0f0f0" stroke="#333" stroke-width="2"/>
   <polygon points="65,8 95,8 80,40" fill="none" stroke="#333" stroke-width="2" stroke-linejoin="round"/>
   <line x1="65" y1="8" x2="95" y2="8" stroke="#333" stroke-width="2"/>
@@ -110,7 +110,7 @@ var aufgabenPool_1_6 = [
   },
   {
     format: 'mc',
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 155" width="300" height="155" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -20 300 175" width="300" height="155" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
   <rect x="40" y="40" width="220" height="80" rx="15" fill="#f0f0f0" stroke="#333" stroke-width="2"/>
   <polygon points="65,8 95,8 80,40" fill="none" stroke="#333" stroke-width="2" stroke-linejoin="round"/>
   <line x1="65" y1="8" x2="95" y2="8" stroke="#333" stroke-width="2"/>
@@ -132,7 +132,7 @@ var aufgabenPool_1_6 = [
   },
   {
     format: 'mc',
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 155" width="300" height="155" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -20 300 175" width="300" height="155" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
   <rect x="40" y="40" width="220" height="80" rx="15" fill="#f0f0f0" stroke="#333" stroke-width="2"/>
   <polygon points="65,8 95,8 80,40" fill="none" stroke="#333" stroke-width="2" stroke-linejoin="round"/>
   <line x1="65" y1="8" x2="95" y2="8" stroke="#333" stroke-width="2"/>
@@ -154,7 +154,7 @@ var aufgabenPool_1_6 = [
   },
   {
     format: 'mc',
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 155" width="300" height="155" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -20 300 175" width="300" height="155" style="border:1px solid #ccc;border-radius:4px;background:#fff;display:block;margin:8px auto;">
   <rect x="40" y="40" width="220" height="80" rx="15" fill="#f0f0f0" stroke="#333" stroke-width="2"/>
   <polygon points="65,8 95,8 80,40" fill="none" stroke="#333" stroke-width="2" stroke-linejoin="round"/>
   <line x1="65" y1="8" x2="95" y2="8" stroke="#333" stroke-width="2"/>
