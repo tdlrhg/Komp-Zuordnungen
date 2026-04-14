@@ -601,7 +601,7 @@ function zeigeFrage() {
   wrapper.appendChild(table);
   const antworten = document.getElementById('antworten'); antworten.innerHTML = '';
   aufgabe.optionen.forEach((opt, i) => {
-    const btn = document.createElement('button'); btn.className = 'antwort-btn'; btn.textContent = opt; btn.onclick = () => antwortenClick(i, aufgabe); antworten.appendChild(btn);
+    const btn = document.createElement('button'); btn.className = 'antwort-btn'; btn.innerHTML = opt; btn.onclick = () => antwortenClick(i, aufgabe); antworten.appendChild(btn);
   });
   document.getElementById('feedback').className = 'feedback';
   document.getElementById('weiter-btn').className = 'weiter-btn';
