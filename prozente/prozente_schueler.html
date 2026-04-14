@@ -430,7 +430,7 @@ function zeigeFrage() {
   const stufenHinweis = istStufe2 ? ' · Teil 2: Verstehen' : ' · Teil 1: Benennen';
   const zeigeHinweis = aktuelleRunde.some(a => a.format === 'mc_erklaerung') && aktuelleRunde.some(a => a.format === 'freitext');
   document.getElementById('fortschritt-text').textContent = `Frage ${aktuellerIndex + 1} von ${aktuelleRunde.length}${zeigeHinweis ? stufenHinweis : ''}`;
-  if (aufgabe.format !== 'wertetabelle') { document.getElementById('frage-text').innerHTML = (aufgabe.kontext ? `<em style="color:var(--muted);font-weight:600;font-size:0.88rem">${aufgabe.kontext}</em><br><br>` : '') + aufgabe.frage; }
+  if (aufgabe.format !== 'wertetabelle') { document.getElementById('frage-text').innerHTML = (aufgabe.kontext ? `<div style="display:inline-block;border:3px solid var(--primary);border-radius:12px;padding:10px 20px;margin-bottom:14px;font-size:1.2rem;font-weight:800;color:var(--text);background:#fff;">${aufgabe.kontext}</div><br>` : '') + aufgabe.frage; }
   const wrapper = document.getElementById('tabelle-wrapper');
   wrapper.innerHTML = '';
 
