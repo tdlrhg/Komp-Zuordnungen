@@ -505,86 +505,86 @@ var aufgabenPool_p_1_1 = [
   },
   {
     format: 'freitext_html',
-    kontext_html: `<span style="display:inline-block;text-align:center;vertical-align:middle;line-height:1.1"><span style="display:block;border-bottom:1.5px solid currentColor;padding:0 3px 1px">9</span><span style="display:block;padding:1px 3px 0">40</span></span>`,
+    kontext_html: `<span style="display:inline-block;text-align:center;vertical-align:middle;line-height:1.1"><span style="display:block;border-bottom:1.5px solid currentColor;padding:0 3px 1px">3</span><span style="display:block;padding:1px 3px 0">50</span></span>`,
     frage: 'Schreibe als Bruch mit Nenner 100.',
-    richtig: ['22,5/100', '22.5/100'],
+    richtig: ['6/100', '6/100'],
     erklaerung: ''
   },
   {
     format: 'freitext_html',
-    kontext_html: `<span style="display:inline-block;text-align:center;vertical-align:middle;line-height:1.1"><span style="display:block;border-bottom:1.5px solid currentColor;padding:0 3px 1px">9</span><span style="display:block;padding:1px 3px 0">40</span></span>`,
+    kontext_html: `<span style="display:inline-block;text-align:center;vertical-align:middle;line-height:1.1"><span style="display:block;border-bottom:1.5px solid currentColor;padding:0 3px 1px">3</span><span style="display:block;padding:1px 3px 0">50</span></span>`,
     frage: 'Schreibe als Dezimalzahl.',
-    richtig: ['0,225', '0.225'],
+    richtig: ['0,06', '0.06'],
     erklaerung: ''
   },
   {
     format: 'freitext_html',
-    kontext_html: `<span style="display:inline-block;text-align:center;vertical-align:middle;line-height:1.1"><span style="display:block;border-bottom:1.5px solid currentColor;padding:0 3px 1px">9</span><span style="display:block;padding:1px 3px 0">40</span></span>`,
+    kontext_html: `<span style="display:inline-block;text-align:center;vertical-align:middle;line-height:1.1"><span style="display:block;border-bottom:1.5px solid currentColor;padding:0 3px 1px">3</span><span style="display:block;padding:1px 3px 0">50</span></span>`,
     frage: 'Schreibe als Prozentzahl.',
-    richtig: ['22,5%', '22,5'],
+    richtig: ['6%', '6'],
     erklaerung: ''
   },
   {
     format: 'freitext_html',
-    kontext_html: `<span style="display:inline-block;text-align:center;vertical-align:middle;line-height:1.1"><span style="display:block;border-bottom:1.5px solid currentColor;padding:0 3px 1px">22,5</span><span style="display:block;padding:1px 3px 0">100</span></span>`,
+    kontext_html: `<span style="display:inline-block;text-align:center;vertical-align:middle;line-height:1.1"><span style="display:block;border-bottom:1.5px solid currentColor;padding:0 3px 1px">6</span><span style="display:block;padding:1px 3px 0">100</span></span>`,
     frage: 'Schreibe als gekürzter Bruch.',
-    richtig: ['9/40'],
+    richtig: ['3/50'],
     erklaerung: ''
   },
   {
     format: 'freitext_html',
-    kontext_html: `<span style="display:inline-block;text-align:center;vertical-align:middle;line-height:1.1"><span style="display:block;border-bottom:1.5px solid currentColor;padding:0 3px 1px">22,5</span><span style="display:block;padding:1px 3px 0">100</span></span>`,
+    kontext_html: `<span style="display:inline-block;text-align:center;vertical-align:middle;line-height:1.1"><span style="display:block;border-bottom:1.5px solid currentColor;padding:0 3px 1px">6</span><span style="display:block;padding:1px 3px 0">100</span></span>`,
     frage: 'Schreibe als Dezimalzahl.',
-    richtig: ['0,225', '0.225'],
+    richtig: ['0,06', '0.06'],
     erklaerung: ''
   },
   {
     format: 'freitext_html',
-    kontext_html: `<span style="display:inline-block;text-align:center;vertical-align:middle;line-height:1.1"><span style="display:block;border-bottom:1.5px solid currentColor;padding:0 3px 1px">22,5</span><span style="display:block;padding:1px 3px 0">100</span></span>`,
+    kontext_html: `<span style="display:inline-block;text-align:center;vertical-align:middle;line-height:1.1"><span style="display:block;border-bottom:1.5px solid currentColor;padding:0 3px 1px">6</span><span style="display:block;padding:1px 3px 0">100</span></span>`,
     frage: 'Schreibe als Prozentzahl.',
-    richtig: ['22,5%', '22,5'],
+    richtig: ['6%', '6'],
     erklaerung: ''
   },
   {
     format: 'freitext_html',
-    kontext_html: `0,225`,
+    kontext_html: `0,06`,
     frage: 'Schreibe als gekürzter Bruch.',
-    richtig: ['9/40'],
+    richtig: ['3/50'],
     erklaerung: ''
   },
   {
     format: 'freitext_html',
-    kontext_html: `0,225`,
+    kontext_html: `0,06`,
     frage: 'Schreibe als Bruch mit Nenner 100.',
-    richtig: ['22,5/100', '22.5/100'],
+    richtig: ['6/100', '6/100'],
     erklaerung: ''
   },
   {
     format: 'freitext_html',
-    kontext_html: `0,225`,
+    kontext_html: `0,06`,
     frage: 'Schreibe als Prozentzahl.',
-    richtig: ['22,5%', '22,5'],
+    richtig: ['6%', '6'],
     erklaerung: ''
   },
   {
     format: 'freitext_html',
-    kontext_html: `22,5%`,
+    kontext_html: `6%`,
     frage: 'Schreibe als gekürzter Bruch.',
-    richtig: ['9/40'],
+    richtig: ['3/50'],
     erklaerung: ''
   },
   {
     format: 'freitext_html',
-    kontext_html: `22,5%`,
+    kontext_html: `6%`,
     frage: 'Schreibe als Bruch mit Nenner 100.',
-    richtig: ['22,5/100', '22.5/100'],
+    richtig: ['6/100', '6/100'],
     erklaerung: ''
   },
   {
     format: 'freitext_html',
-    kontext_html: `22,5%`,
+    kontext_html: `6%`,
     frage: 'Schreibe als Dezimalzahl.',
-    richtig: ['0,225', '0.225'],
+    richtig: ['0,06', '0.06'],
     erklaerung: ''
   },
   {
@@ -673,86 +673,86 @@ var aufgabenPool_p_1_1 = [
   },
   {
     format: 'freitext_html',
-    kontext_html: `<span style="display:inline-block;text-align:center;vertical-align:middle;line-height:1.1"><span style="display:block;border-bottom:1.5px solid currentColor;padding:0 3px 1px">41</span><span style="display:block;padding:1px 3px 0">200</span></span>`,
+    kontext_html: `<span style="display:inline-block;text-align:center;vertical-align:middle;line-height:1.1"><span style="display:block;border-bottom:1.5px solid currentColor;padding:0 3px 1px">7</span><span style="display:block;padding:1px 3px 0">100</span></span>`,
     frage: 'Schreibe als Bruch mit Nenner 100.',
-    richtig: ['20,5/100', '20.5/100'],
+    richtig: ['7/100', '7/100'],
     erklaerung: ''
   },
   {
     format: 'freitext_html',
-    kontext_html: `<span style="display:inline-block;text-align:center;vertical-align:middle;line-height:1.1"><span style="display:block;border-bottom:1.5px solid currentColor;padding:0 3px 1px">41</span><span style="display:block;padding:1px 3px 0">200</span></span>`,
+    kontext_html: `<span style="display:inline-block;text-align:center;vertical-align:middle;line-height:1.1"><span style="display:block;border-bottom:1.5px solid currentColor;padding:0 3px 1px">7</span><span style="display:block;padding:1px 3px 0">100</span></span>`,
     frage: 'Schreibe als Dezimalzahl.',
-    richtig: ['0,205', '0.205'],
+    richtig: ['0,07', '0.07'],
     erklaerung: ''
   },
   {
     format: 'freitext_html',
-    kontext_html: `<span style="display:inline-block;text-align:center;vertical-align:middle;line-height:1.1"><span style="display:block;border-bottom:1.5px solid currentColor;padding:0 3px 1px">41</span><span style="display:block;padding:1px 3px 0">200</span></span>`,
+    kontext_html: `<span style="display:inline-block;text-align:center;vertical-align:middle;line-height:1.1"><span style="display:block;border-bottom:1.5px solid currentColor;padding:0 3px 1px">7</span><span style="display:block;padding:1px 3px 0">100</span></span>`,
     frage: 'Schreibe als Prozentzahl.',
-    richtig: ['20,5%', '20,5'],
+    richtig: ['7%', '7'],
     erklaerung: ''
   },
   {
     format: 'freitext_html',
-    kontext_html: `<span style="display:inline-block;text-align:center;vertical-align:middle;line-height:1.1"><span style="display:block;border-bottom:1.5px solid currentColor;padding:0 3px 1px">20,5</span><span style="display:block;padding:1px 3px 0">100</span></span>`,
+    kontext_html: `<span style="display:inline-block;text-align:center;vertical-align:middle;line-height:1.1"><span style="display:block;border-bottom:1.5px solid currentColor;padding:0 3px 1px">7</span><span style="display:block;padding:1px 3px 0">100</span></span>`,
     frage: 'Schreibe als gekürzter Bruch.',
-    richtig: ['41/200'],
+    richtig: ['7/100'],
     erklaerung: ''
   },
   {
     format: 'freitext_html',
-    kontext_html: `<span style="display:inline-block;text-align:center;vertical-align:middle;line-height:1.1"><span style="display:block;border-bottom:1.5px solid currentColor;padding:0 3px 1px">20,5</span><span style="display:block;padding:1px 3px 0">100</span></span>`,
+    kontext_html: `<span style="display:inline-block;text-align:center;vertical-align:middle;line-height:1.1"><span style="display:block;border-bottom:1.5px solid currentColor;padding:0 3px 1px">7</span><span style="display:block;padding:1px 3px 0">100</span></span>`,
     frage: 'Schreibe als Dezimalzahl.',
-    richtig: ['0,205', '0.205'],
+    richtig: ['0,07', '0.07'],
     erklaerung: ''
   },
   {
     format: 'freitext_html',
-    kontext_html: `<span style="display:inline-block;text-align:center;vertical-align:middle;line-height:1.1"><span style="display:block;border-bottom:1.5px solid currentColor;padding:0 3px 1px">20,5</span><span style="display:block;padding:1px 3px 0">100</span></span>`,
+    kontext_html: `<span style="display:inline-block;text-align:center;vertical-align:middle;line-height:1.1"><span style="display:block;border-bottom:1.5px solid currentColor;padding:0 3px 1px">7</span><span style="display:block;padding:1px 3px 0">100</span></span>`,
     frage: 'Schreibe als Prozentzahl.',
-    richtig: ['20,5%', '20,5'],
+    richtig: ['7%', '7'],
     erklaerung: ''
   },
   {
     format: 'freitext_html',
-    kontext_html: `0,205`,
+    kontext_html: `0,07`,
     frage: 'Schreibe als gekürzter Bruch.',
-    richtig: ['41/200'],
+    richtig: ['7/100'],
     erklaerung: ''
   },
   {
     format: 'freitext_html',
-    kontext_html: `0,205`,
+    kontext_html: `0,07`,
     frage: 'Schreibe als Bruch mit Nenner 100.',
-    richtig: ['20,5/100', '20.5/100'],
+    richtig: ['7/100', '7/100'],
     erklaerung: ''
   },
   {
     format: 'freitext_html',
-    kontext_html: `0,205`,
+    kontext_html: `0,07`,
     frage: 'Schreibe als Prozentzahl.',
-    richtig: ['20,5%', '20,5'],
+    richtig: ['7%', '7'],
     erklaerung: ''
   },
   {
     format: 'freitext_html',
-    kontext_html: `20,5%`,
+    kontext_html: `7%`,
     frage: 'Schreibe als gekürzter Bruch.',
-    richtig: ['41/200'],
+    richtig: ['7/100'],
     erklaerung: ''
   },
   {
     format: 'freitext_html',
-    kontext_html: `20,5%`,
+    kontext_html: `7%`,
     frage: 'Schreibe als Bruch mit Nenner 100.',
-    richtig: ['20,5/100', '20.5/100'],
+    richtig: ['7/100', '7/100'],
     erklaerung: ''
   },
   {
     format: 'freitext_html',
-    kontext_html: `20,5%`,
+    kontext_html: `7%`,
     frage: 'Schreibe als Dezimalzahl.',
-    richtig: ['0,205', '0.205'],
+    richtig: ['0,07', '0.07'],
     erklaerung: ''
   },
   {
