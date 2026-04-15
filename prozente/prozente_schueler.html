@@ -692,7 +692,7 @@ function antwortenClick(index, aufgabe, richtigDomPos) {
   if (index === richtigPos) {
     richtigCount++;
     buttons[index].classList.add('richtig');
-    feedback.textContent = '✓ Richtig! ' + aufgabe.erklaerung;
+    feedback.textContent = aufgabe.erklaerung ? '✓ Richtig! ' + aufgabe.erklaerung : '✓ Richtig!';
     feedback.className = 'feedback show ok';
   } else {
     buttons[index].classList.add('falsch');
@@ -728,7 +728,7 @@ function pruefeWertetabelle(aufgabe) {
   const weiter = document.getElementById('weiter-btn');
   if (alleRichtig) {
     richtigCount++;
-    feedback.textContent = '✓ Richtig! ' + aufgabe.erklaerung;
+    feedback.textContent = aufgabe.erklaerung ? '✓ Richtig! ' + aufgabe.erklaerung : '✓ Richtig!';
     feedback.className = 'feedback show ok';
   } else {
     const korrekt = aufgabe.xWerte.map((x, i) => x + ' → ' + String(aufgabe.yWerte[i]).replace('.', ',')).join('  |  ');
@@ -781,7 +781,7 @@ function freitextPruefen(aufgabe) {
   const feedback = document.getElementById('feedback'); const weiter = document.getElementById('weiter-btn');
   const richtigeVarianten = aufgabe.richtig.map(r => r.toLowerCase());
   const korrekt = richtigeVarianten.some(r => antwort === r || antwort === r.replace(/\s+/g, ''));
-  if (korrekt) { richtigCount++; input.style.borderColor = 'var(--green)'; feedback.textContent = '✓ Richtig! ' + aufgabe.erklaerung; feedback.className = 'feedback show ok'; }
+  if (korrekt) { richtigCount++; input.style.borderColor = 'var(--green)'; feedback.textContent = aufgabe.erklaerung ? '✓ Richtig! ' + aufgabe.erklaerung : '✓ Richtig!'; feedback.className = 'feedback show ok'; }
   else { input.style.borderColor = 'var(--red)'; feedback.textContent = '✗ Leider falsch. Die richtige Antwort lautet: ' + aufgabe.richtig[0] + '. ' + aufgabe.erklaerung; feedback.className = 'feedback show nok'; }
   weiter.className = 'weiter-btn show';
   weiter.textContent = aktuellerIndex === aktuelleRunde.length - 1 ? 'Ergebnis ansehen →' : 'Weiter →';
