@@ -539,25 +539,61 @@ function zeigeFrage() {
       div.innerHTML = aufgabe.kontext_html;
       wrapper.appendChild(div);
     }
-    // Eingabefeld
     const antworten = document.getElementById('antworten');
     antworten.innerHTML = '';
-    const inputWrap = document.createElement('div');
-    inputWrap.style.cssText = 'display:flex;gap:8px;margin-top:8px;';
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.id = 'freitext-input';
-    input.placeholder = 'Antwort…';
-    input.style.cssText = 'width:140px;padding:10px 14px;border:2px solid #ccc;border-radius:8px;font-size:1rem;outline:none;';
-    input.addEventListener('keydown', e => { if (e.key === 'Enter') freitextPruefen(aufgabe); });
-    const btn = document.createElement('button');
-    btn.className = 'test-starten-btn';
-    btn.textContent = 'Prüfen';
-    btn.onclick = () => freitextPruefen(aufgabe);
-    inputWrap.appendChild(input);
-    inputWrap.appendChild(btn);
-    antworten.appendChild(inputWrap);
-    setTimeout(() => input.focus(), 100);
+    const istBruch = aufgabe.frage.includes('Bruch');
+    if (istBruch) {
+      // Zwei Felder: Zähler / Nenner
+      const bruchWrap = document.createElement('div');
+      bruchWrap.style.cssText = 'display:flex;align-items:center;gap:12px;margin-top:8px;';
+      const feldWrap = document.createElement('div');
+      feldWrap.style.cssText = 'display:inline-flex;flex-direction:column;align-items:center;gap:2px;';
+      const zaehler = document.createElement('input');
+      zaehler.type = 'text'; zaehler.id = 'bruch-zaehler'; zaehler.placeholder = '?';
+      zaehler.style.cssText = 'width:70px;padding:6px;border:2px solid #ccc;border-radius:8px;font-size:1.1rem;text-align:center;outline:none;';
+      const strich = document.createElement('div');
+      strich.style.cssText = 'width:70px;border-top:2.5px solid var(--text);margin:2px 0;';
+      const nenner = document.createElement('input');
+      nenner.type = 'text'; nenner.id = 'bruch-nenner'; nenner.placeholder = '?';
+      nenner.style.cssText = 'width:70px;padding:6px;border:2px solid #ccc;border-radius:8px;font-size:1.1rem;text-align:center;outline:none;';
+      feldWrap.appendChild(zaehler);
+      feldWrap.appendChild(strich);
+      feldWrap.appendChild(nenner);
+      const btn = document.createElement('button');
+      btn.className = 'test-starten-btn'; btn.textContent = 'Prüfen';
+      btn.onclick = () => {
+        const z = zaehler.value.trim().replace(',','.');
+        const n = nenner.value.trim().replace(',','.');
+        // Fake freitext-input für freitextPruefen
+        const fake = document.createElement('input');
+        fake.id = 'freitext-input'; fake.value = z + '/' + n;
+        fake.style.display = 'none';
+        antworten.appendChild(fake);
+        freitextPruefen(aufgabe);
+      };
+      [zaehler, nenner].forEach(inp => inp.addEventListener('keydown', e => {
+        if (e.key === 'Enter') btn.click();
+      }));
+      bruchWrap.appendChild(feldWrap);
+      bruchWrap.appendChild(btn);
+      antworten.appendChild(bruchWrap);
+      setTimeout(() => zaehler.focus(), 100);
+    } else {
+      // Normales Eingabefeld
+      const inputWrap = document.createElement('div');
+      inputWrap.style.cssText = 'display:flex;gap:8px;margin-top:8px;';
+      const input = document.createElement('input');
+      input.type = 'text'; input.id = 'freitext-input'; input.placeholder = 'Antwort…';
+      input.style.cssText = 'width:140px;padding:10px 14px;border:2px solid #ccc;border-radius:8px;font-size:1rem;outline:none;';
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') freitextPruefen(aufgabe); });
+      const btn = document.createElement('button');
+      btn.className = 'test-starten-btn'; btn.textContent = 'Prüfen';
+      btn.onclick = () => freitextPruefen(aufgabe);
+      inputWrap.appendChild(input);
+      inputWrap.appendChild(btn);
+      antworten.appendChild(inputWrap);
+      setTimeout(() => input.focus(), 100);
+    }
     document.getElementById('feedback').className = 'feedback';
     document.getElementById('weiter-btn').className = 'weiter-btn';
     return;
