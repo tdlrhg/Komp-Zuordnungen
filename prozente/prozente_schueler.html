@@ -530,6 +530,38 @@ function zeigeFrage() {
     return;
   }
 
+  if (aufgabe.format === 'freitext_html') {
+    // Kontext als HTML rendern
+    if (aufgabe.kontext_html) {
+      const div = document.createElement('div');
+      div.style.cssText = 'display:block;width:100%;border:3px solid var(--primary);border-radius:12px;padding:10px 20px;margin-bottom:14px;font-size:1.2rem;font-weight:800;color:var(--text);background:#fff;text-align:center;box-sizing:border-box;';
+      div.innerHTML = aufgabe.kontext_html;
+      wrapper.appendChild(div);
+    }
+    // Eingabefeld
+    const antworten = document.getElementById('antworten');
+    antworten.innerHTML = '';
+    const inputWrap = document.createElement('div');
+    inputWrap.style.cssText = 'display:flex;gap:8px;margin-top:8px;';
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.id = 'freitext-input';
+    input.placeholder = 'Antwort eingeben…';
+    input.style.cssText = 'flex:1;padding:10px 14px;border:2px solid #ccc;border-radius:8px;font-size:1rem;outline:none;';
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') freitextPruefen(aufgabe); });
+    const btn = document.createElement('button');
+    btn.className = 'test-starten-btn';
+    btn.textContent = 'Prüfen';
+    btn.onclick = () => freitextPruefen(aufgabe);
+    inputWrap.appendChild(input);
+    inputWrap.appendChild(btn);
+    antworten.appendChild(inputWrap);
+    setTimeout(() => input.focus(), 100);
+    document.getElementById('feedback').className = 'feedback';
+    document.getElementById('weiter-btn').className = 'weiter-btn';
+    return;
+  }
+
   if (aufgabe.format === 'freitext') {
     if (aufgabe.svg) { const div = document.createElement('div'); div.style.cssText = 'margin-bottom:8px;'; div.innerHTML = aufgabe.svg; wrapper.appendChild(div); }
     else if (aufgabe.situation) { const p = document.createElement('p'); p.style.cssText = 'background:#f0f4ff;border-left:3px solid var(--primary);padding:10px 14px;border-radius:4px;font-size:0.92rem;margin-bottom:8px;'; p.textContent = aufgabe.situation; wrapper.appendChild(p); }
